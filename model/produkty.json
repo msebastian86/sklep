@@ -1,0 +1,22 @@
+[ 
+	{ 
+		"nazwa" : "pomarancza", 
+		"waga" : 195, 
+		"opis" : "świeże, smaczne, z jamajki"  
+	},
+	{ 
+		"nazwa" : "japko", 
+		"waga" : 160, 
+		"opis" : "nieświeże, z polski"  
+	},
+	{ 
+		"nazwa" : "ziemniaki", 
+		"waga" : 1400, 
+		"opis" : "na frytki"  
+	}, 
+	{ 
+		"nazwa" : "ananas", 
+		"waga" : 800, 
+		"opis" : "dobry :P"  
+	} 
+]

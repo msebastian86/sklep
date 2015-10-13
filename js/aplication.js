@@ -2,14 +2,20 @@
 
 var app = angular.module('app' , []);
 
-app.controller('products', ['$scope', function($scope){
+app.controller('products', ['$scope', '$http', function($scope, $http){
 
-	$scope.products = [ 
-		{ nazwa : 'pomarancza' , waga : 200, opis : "świeże, smaczne, z jamajki"  },
-		{ nazwa : 'japko' , waga : 160, opis : "nieświeże, z polski"  }, 
-		{ nazwa : 'ananas' , waga : 800, opis : "dobry :P"  } 
-	];
+	$scope.wyswietlProdukty = function(){
 
-	console.log($scope.products[2].opis);
+		$http.get('model/produkty.json')
+			.success( function(data, status, headers){
+				$scope.products = data;
+			})
+			.error( function(){
+				console.log('cos sie zjebał JSON');
+		});
+			
+	};
+
+	// console.log($scope.products[2].opis);
 
 }]);

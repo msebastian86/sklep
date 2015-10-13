@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>stefanShop</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -77,6 +77,10 @@
             <p></p>
 
             <div ng-controller="products">
+
+                <button class="btn btn-primary" ng-click="wyswietlProdukty()">Pokaż targowisko :P</button>
+
+                <p></p>
 
                 <div class="alert alert-info" ng-repeat="product in products | filter : search">
                     <strong>nazwa:</strong> {{ product.nazwa | uppercase}}
