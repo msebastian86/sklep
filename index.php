@@ -27,21 +27,64 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body ng-app="aplikacja">
+  <body ng-app="app">
+
+    <header>
+        <nav class="navbar navbar-default">
+          <div class="container">
+            <div class="row">
+        
+              <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">stefanShop</a>
+                </div>
+              
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Produkty</a></li>
+                  </ul>
+              
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Link</a></li>
+                  </ul>
+        
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+        
+            </div>
+          </div>
+        </nav>
+    </header>
+
+
 
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <h1>Lorem ipsum dolor sit amet</h1>
 
 
-            <div id="xyz" ng-controller="test">
-                {{ nazwa }}
-                <br>
-                <input type="text" ng-model="nazwa">
-            </div>
+            <input type="text" class="form-controll" placeholder="szukaj" ng-model='search'>
+            <p></p>
 
-            <button class="btn btn-primary">click</button>
+            <div ng-controller="products">
+
+                    <div class="alert alert-info" ng-repeat="product in products | filter : search">
+                        <strong>nazwa:</strong> {{ product.nazwa | uppercase}}
+                        <br/><strong>waga:</strong> {{ product.waga }}
+                        <br/><strong>opis:</strong> {{ product.opis }}
+                    </div>
+             </div>
+
           
 
         </div>
