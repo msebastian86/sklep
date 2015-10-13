@@ -303,17 +303,6 @@
 	},
 	"buffers":
 	[
-		{
-			"contents": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->\n    <title>Bootstrap 101 Template</title>\n\n    <!-- Latest compiled and minified CSS -->\n    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\">\n    <!-- Optional theme -->\n    <link rel=\"stylesheet\" href=\"css/bootstrap-theme.css\">\n    <link rel=\"stylesheet\" href=\"css/theme.css\">\n\n    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\"></script>\n    <!-- Latest compiled and minified JavaScript -->\n    <script src=\"bower_components/bootstrap/dist/js/bootstrap.min.js\"></script>\n    <script src=\"bower_components/angularjs/angular.min.js\"></script>\n    <script src=\"js/aplication.js\"></script>\n    <script src=\"js/moje.js\"></script>\n\n    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->\n    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->\n    <!--[if lt IE 9]>\n      <script src=\"https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js\"></script>\n      <script src=\"https://oss.maxcdn.com/respond/1.4.2/respond.min.js\"></script>\n    <![endif]-->\n  </head>\n  <body ng-app=\"aplikacja\">\n\n    <header>\n        <nav class=\"navbar navbar-default\">\n          <div class=\"container\">\n            <div class=\"row\">\n        \n              <div class=\"container-fluid\">\n                <!-- Brand and toggle get grouped for better mobile display -->\n                <div class=\"navbar-header\">\n                  <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\n                    <span class=\"sr-only\">Toggle navigation</span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                    <span class=\"icon-bar\"></span>\n                  </button>\n                  <a class=\"navbar-brand\" href=\"#\">stefanShop</a>\n                </div>\n              \n                <!-- Collect the nav links, forms, and other content for toggling -->\n                <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n                \n                  <ul class=\"nav navbar-nav\">\n                    <li class=\"active\"><a href=\"#\">Link <span class=\"sr-only\">(current)</span></a></li>\n                    <li><a href=\"#\">Produkty</a></li>\n                  </ul>\n              \n                  <ul class=\"nav navbar-nav navbar-right\">\n                    <li><a href=\"#\">Link</a></li>\n                  </ul>\n        \n                </div><!-- /.navbar-collapse -->\n              </div><!-- /.container-fluid -->\n        \n            </div>\n          </div>\n        </nav>\n    </header>\n\n\n\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-sm-12\">\n\n          <div id=\"xyz\" ng-controller=\"products\">\n              {{ nazwa }}\n              <br>\n              <input type=\"text\" ng-model=\"nazwa\">\n          </div>\n\n          \n\n        </div>\n      </div>\n    </div>\n\n\n  </body>\n</html>",
-			"file": "index.php",
-			"file_size": 3527,
-			"file_write_time": 130892089838213400,
-			"settings":
-			{
-				"buffer_size": 3328,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -482,8 +471,16 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/E/repa/sklep",
+		"/E/repa/sklep/js"
+	],
 	"file_history":
 	[
+		"/E/repa/sklep/js/aplication.js",
+		"/E/repa/sklep/index.php",
+		"/E/repa/sklep/js/moje.js",
 		"/D/workin/helou.html",
 		"/D/workin/brand.html",
 		"/D/workin/brand.hmtl",
@@ -608,10 +605,7 @@
 		"/E/repa/churn2015/content/themes/churn2015/page-main.php",
 		"/E/repa/churn2015/content/themes/churn2015/assets/js/main.js",
 		"/E/repa/churn2015/content/themes/churn2015/assets/less/_mainpage.less",
-		"/E/repa/churn2015/content/themes/churn2015/functions.php",
-		"/E/repa/churn2015/content/themes/churn2015/gulpfile.js",
-		"/E/repa/churn2015/content/themes/churn2015/package.json",
-		"/E/repa/churn2015/content/themes/churn2015/bower.json"
+		"/E/repa/churn2015/content/themes/churn2015/functions.php"
 	],
 	"find":
 	{
@@ -629,6 +623,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"xyz",
+			"div",
+			"aplikacja",
 			"hello-mail&amp;utm_campaign=retail2509",
 			"0px 15px 0px 15px",
 			"sklep",
@@ -753,10 +750,7 @@
 			"/**/",
 			"fpm",
 			"dbf2015",
-			"0px 0px 20px 15px",
-			"top",
-			"18px",
-			"utm_content=risk-1009&amp;utm_campaign=start"
+			"0px 0px 20px 15px"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -774,43 +768,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "index.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3328,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3141,
-								3141
-							]
-						],
-						"settings":
-						{
-							"rulers":
-							[
-							],
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true,
-							"wrap_width": 0
-						},
-						"translation.x": 0.0,
-						"translation.y": 499.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],

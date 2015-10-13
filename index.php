@@ -78,14 +78,13 @@
 
             <div ng-controller="products">
 
-                    <div class="alert alert-info" ng-repeat="product in products | filter : search">
-                        <strong>nazwa:</strong> {{ product.nazwa | uppercase}}
-                        <br/><strong>waga:</strong> {{ product.waga }}
-                        <br/><strong>opis:</strong> {{ product.opis }}
-                    </div>
-             </div>
+                <div class="alert alert-info" ng-repeat="product in products | filter : search">
+                    <strong>nazwa:</strong> {{ product.nazwa | uppercase}}
+                    <br/><strong>waga:</strong> {{ product.waga }}
+                    <br/><strong>opis:</strong> {{ product.opis }}
+                </div>
 
-          
+             </div>
 
         </div>
       </div>
