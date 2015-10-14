@@ -70,7 +70,7 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-6">
 
 
             <input type="text" class="form-controll" placeholder="szukaj" ng-model='search'>
@@ -91,6 +91,10 @@
              </div>
 
         </div>
+
+        <div class="col-sm-6">
+          <img src="img/zukwypas.png" alt="żuk :P" class="img-responsive">
+        </div>  
       </div>
     </div>
 
