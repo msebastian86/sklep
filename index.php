@@ -17,7 +17,9 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/angularjs/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.7/angular-route.min.js"></script>
     <script src="js/aplication.js"></script>
+    <script src="js/controllers.js"></script>
     <script src="js/moje.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -50,8 +52,8 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 
                   <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Produkty</a></li>
+                    <li class=""><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#/products">Produkty</a></li>
                   </ul>
               
                   <ul class="nav navbar-nav navbar-right">
@@ -67,34 +69,20 @@
     </header>
 
 
-
     <div class="container">
       <div class="row">
         <div class="col-sm-6">
 
-
-            <input type="text" class="form-controll" placeholder="szukaj" ng-model='search'>
-            <p></p>
-
-            <div ng-controller="products">
-
-                <button class="btn btn-primary" ng-click="wyswietlProdukty()">Pokaż targowisko :P</button>
-
-                <p></p>
-
-                <div class="alert alert-info" ng-repeat="product in products | filter : search">
-                    <strong>nazwa:</strong> {{ product.nazwa | uppercase}}
-                    <br/><strong>waga:</strong> {{ product.waga }}
-                    <br/><strong>opis:</strong> {{ product.opis }}
-                </div>
-
-             </div>
+          <div ng-view>
+            
+          </div>
 
         </div>
 
         <div class="col-sm-6">
           <img src="img/zukwypas.png" alt="żuk :P" class="img-responsive">
-        </div>  
+        </div> 
+
       </div>
     </div>
 

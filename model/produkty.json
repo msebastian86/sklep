@@ -2,21 +2,25 @@
 	{ 
 		"nazwa" : "pomarancza", 
 		"waga" : 195, 
-		"opis" : "świeże, smaczne, z jamajki"  
+		"opis" : "świeże, smaczne, z jamajki",
+		"cena" : 10.86
 	},
 	{ 
 		"nazwa" : "japko", 
 		"waga" : 160, 
-		"opis" : "nieświeże, z polski"  
+		"opis" : "nieświeże, z polski",
+		"cena" : 200
 	},
 	{ 
 		"nazwa" : "ziemniaki", 
 		"waga" : 1400, 
-		"opis" : "na frytki"  
+		"opis" : "na frytki",
+		"cena" : 9.99
 	}, 
 	{ 
 		"nazwa" : "ananas", 
 		"waga" : 800, 
-		"opis" : "dobry :P"  
+		"opis" : "dobry :P",
+		"cena" : 97
 	} 
 ]

@@ -1,21 +1,24 @@
 'use strict'; 
 
-var app = angular.module('app' , []);
+var app = angular.module('app' , ['ngRoute', 'controllers']);
 
-app.controller('products', ['$scope', '$http', function($scope, $http){
+app.config( ['$routeProvider', '$httpProvider', function( $routeProvider, $httpProvider ){
 
-	$scope.wyswietlProdukty = function(){
+	$routeProvider.when('/products', {
+		controller : 'products',
+		templateUrl : 'partials/products.php'
+	});
 
-		$http.get('model/produkty.json')
-			.success( function(data, status, headers){
-				$scope.products = data;
-			})
-			.error( function(){
-				console.log('cos sie zjebał JSON');
-		});
-			
-	};
+	$routeProvider.when('/product/:id', {
+		controller : 'product',
+		templateUrl : 'partials/product.php'
+	});
 
-	// console.log($scope.products[2].opis);
+	$routeProvider.otherwise({
+		redirectTo: '/home'
+	});
+
 
 }]);
+
+
