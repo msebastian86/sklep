@@ -9,9 +9,14 @@ app.config( ['$routeProvider', '$httpProvider', function( $routeProvider, $httpP
 		templateUrl : 'partials/products.php'
 	});
 
-	$routeProvider.when('/product/:id', {
-		controller : 'product',
-		templateUrl : 'partials/product.php'
+	$routeProvider.when('/product/edit/:id', {
+		controller : 'productEdit',
+		templateUrl : 'partials/product-edit.php'
+	});
+
+	$routeProvider.when('/product/create', {
+		controller : 'productCreate',
+		templateUrl : 'partials/product-create.php'
 	});
 
 	$routeProvider.otherwise({
