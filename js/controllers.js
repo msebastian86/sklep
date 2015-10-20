@@ -3,6 +3,19 @@
 
 var myCtrls = angular.module('myCtrls' , ['ngRoute']);
 
+
+
+myCtrls.controller('navigation', ['$scope', '$location', function($scope, $location){
+
+		console.log( $location.path() );
+
+		$scope.isActive = function ( path ) {
+			return $location.path() ===  path;
+		};
+
+}]);
+
+
 myCtrls.controller('products', ['$scope', '$http', function($scope, $http){
 
 		$http.get('model/produkty.json')
@@ -14,7 +27,6 @@ myCtrls.controller('products', ['$scope', '$http', function($scope, $http){
 		});
 
 		$scope.delete = function ( product, $index ) {
-
 
 			//console.log( $scope.products[$index] );
 
@@ -60,6 +72,12 @@ myCtrls.controller('productCreate', ['$scope', '$http', function($scope, $http){
 		};
 
 	// console.log($scope.products[2].opis);
+
+}]);
+
+
+myCtrls.controller('users', ['$scope', '$location', function($scope, $location){
+
 
 }]);
 
