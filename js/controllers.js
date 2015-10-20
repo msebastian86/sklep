@@ -1,9 +1,9 @@
 'use strict';
 
 
-var controllers = angular.module('controllers' , ['ngRoute']);
+var myCtrls = angular.module('myCtrls' , ['ngRoute']);
 
-controllers.controller('products', ['$scope', '$http', function($scope, $http){
+myCtrls.controller('products', ['$scope', '$http', function($scope, $http){
 
 		$http.get('model/produkty.json')
 			.success( function(data, status, headers){
@@ -17,7 +17,7 @@ controllers.controller('products', ['$scope', '$http', function($scope, $http){
 
 }]);
 
-controllers.controller('product', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+myCtrls.controller('product', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 
 
 		$http.get('model/produkty.json')
@@ -28,6 +28,11 @@ controllers.controller('product', ['$scope', '$http', '$routeParams', function($
 			.error( function(){
 				console.log('cos sie zjebał JSON :/');
 		});
+
+		$scope.saveChanges = function ( product ) {
+			console.log( product );
+			console.log( $routeParams.id );
+		};
 
 	// console.log($scope.products[2].opis);
 
