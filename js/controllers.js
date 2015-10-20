@@ -13,6 +13,17 @@ myCtrls.controller('products', ['$scope', '$http', function($scope, $http){
 				console.log('cos sie zjebał JSON :/');
 		});
 
+		$scope.delete = function ( product, $index ) {
+
+
+			//console.log( $scope.products[$index] );
+
+			$scope.products.splice( $index , 1 );
+			// [który index, ile elementów, dodanie czegoś ]
+
+			//console.log( product );
+		};
+
 	// console.log($scope.products[2].opis);
 
 }]);

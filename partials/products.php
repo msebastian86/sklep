@@ -17,7 +17,16 @@
         <br/><strong>waga sztuki:</strong> {{ product.waga }}
         <br/><strong>opis:</strong> {{ product.opis }}
         <br/><strong>cena:</strong> {{ product.cena | number:2 }} zł/kg
-        <p><a href="#/product/edit/{{$index}}" class="btn btn-default">EDIT</a></p>
+        <p>&nbsp;</p>
+
+        <div class="row">
+            <div class="col-xs-6">
+                <p><a href="#/product/edit/{{$index}}" class="btn btn-default" style="width:100%;">EDIT</a></p>
+            </div>
+            <div class="col-xs-6">
+                <p><a ng-click="delete( product, $index )" class="btn btn-danger" style="width:100%;">DELETE</a></p>
+            </div>
+        </div>
     </div>
 
  </div>
