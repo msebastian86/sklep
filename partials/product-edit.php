@@ -35,14 +35,10 @@
             <br/><strong class="label label-warning">cena:</strong> {{(product.cena | number:2) + " €"}}
 
         </div>
-    </div>
-    <hr/>
-    <div class="row">
-        <div class="col-sm-12">
-            <button type="submit" class="btn btn-primary">Zapisz pan zmiany</button>
-            <a href="#/products" class="btn btn-primary">Wróć, olej zmiany</a>
-        </div>
-    </div>
 
-    <p></p>
+        <hr/>
+
+        <button type="submit" class="btn btn-primary">Zapisz pan zmiany</button>
+        <a href="#/products" class="btn btn-primary">Wróć, olej zmiany</a>
+    </div>
 </form>

@@ -24,6 +24,16 @@ app.config( ['$routeProvider', '$httpProvider', function( $routeProvider, $httpP
 		templateUrl : 'partials/users.php'
 	});
 
+	$routeProvider.when('/user/edit/:id', {
+		controller : 'userEdit',
+		templateUrl : 'partials/user-edit.php'
+	});
+
+	$routeProvider.when('/user/create', {
+		controller : 'userCreate',
+		templateUrl : 'partials/user-create.php'
+	});
+
 	$routeProvider.otherwise({
 		redirectTo: '/home'
 	});

@@ -86,7 +86,7 @@ myCtrls.controller('users', ['$scope', '$http', function($scope, $http){
 			console.log('cos sie zjebał JSON :/');
 	});
 
-	$scope.delete = function ( users, $index ) {
+	$scope.delete = function ( user, $index ) {
 
 		//console.log( $scope.userss[$index] );
 
@@ -95,6 +95,41 @@ myCtrls.controller('users', ['$scope', '$http', function($scope, $http){
 
 		//console.log( users );
 	};
+
+}]);
+
+myCtrls.controller('userEdit', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+
+
+		$http.post('model/users.json')
+
+			.success( function(data){
+				var users = data;
+				$scope.user = users[$routeParams.id];
+			})
+			.error( function(){
+				console.log('cos sie zjebał JSON :/');
+		});
+
+		$scope.saveChanges = function ( user ) {
+			console.log( user );
+			console.log( $routeParams.id );
+		};
+
+	// console.log($scope.users[2].opis);
+
+}]);
+
+
+myCtrls.controller('userCreate', ['$scope', '$http', function($scope, $http){
+
+
+		$scope.createUser = function () {
+			// TODO połączyć z API
+			console.log( $scope.user );
+		};
+
+	// console.log($scope.products[2].opis);
 
 }]);
 
