@@ -76,8 +76,26 @@ myCtrls.controller('productCreate', ['$scope', '$http', function($scope, $http){
 }]);
 
 
-myCtrls.controller('users', ['$scope', '$location', function($scope, $location){
+myCtrls.controller('users', ['$scope', '$http', function($scope, $http){
 
+	$http.get('model/users.json')
+		.success( function(data){
+			$scope.users = data;
+		})
+		.error( function(){
+			console.log('cos sie zjebał JSON :/');
+	});
+
+	$scope.delete = function ( users, $index ) {
+
+		//console.log( $scope.userss[$index] );
+
+		$scope.users.splice( $index , 1 );
+		// [który index, ile elementów, dodanie czegoś ]
+
+		//console.log( users );
+	};
 
 }]);
+
 
