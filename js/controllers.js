@@ -18,7 +18,7 @@ myCtrls.controller('navigation', ['$scope', '$location', function($scope, $locat
 
 myCtrls.controller('products', ['$scope', '$http', function($scope, $http){
 
-		$http.get('model/produkty.json')
+		$http.get('model/products.json')
 			.success( function(data, status, headers){
 				$scope.products = data;
 			})
@@ -43,7 +43,7 @@ myCtrls.controller('products', ['$scope', '$http', function($scope, $http){
 myCtrls.controller('productEdit', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 
 
-		$http.post('model/produkty.json')
+		$http.post('model/products.json')
 
 			.success( function(data){
 				var products = data;
@@ -130,6 +130,34 @@ myCtrls.controller('userCreate', ['$scope', '$http', function($scope, $http){
 		};
 
 	// console.log($scope.products[2].opis);
+
+}]);
+
+
+myCtrls.controller('orders', ['$scope', '$http', function($scope, $http){
+
+	$http.get('model/orders.json')
+		.success( function(data){
+			$scope.orders = data;
+		})
+		.error( function(){
+			console.log('cos sie zjebał JSON :/');
+	});
+
+	$scope.delete = function ( user, $index ) {
+		$scope.orders.splice( $index , 1 )
+	};
+
+	$scope.changeStatus = function ( order ) {
+
+		if (order.status == 0) 
+
+			order.status = 1;
+		else
+			order.status = 0;
+		
+		console.log(order.status);
+	};
 
 }]);
 

@@ -1,5 +1,3 @@
-
-
 <form ng-submit="saveChanges( user )">
 
     <div class="row">

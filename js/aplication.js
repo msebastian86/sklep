@@ -4,6 +4,8 @@ var app = angular.module('app' , ['ngRoute', 'myCtrls']);
 
 app.config( ['$routeProvider', '$httpProvider', function( $routeProvider, $httpProvider ){
 
+	// ============== products ==================
+
 	$routeProvider.when('/products', {
 		controller : 'products',
 		templateUrl : 'partials/products.php'
@@ -19,6 +21,8 @@ app.config( ['$routeProvider', '$httpProvider', function( $routeProvider, $httpP
 		templateUrl : 'partials/product-create.php'
 	});
 
+	// ============== users ==================
+
 	$routeProvider.when('/users', {
 		controller : 'users',
 		templateUrl : 'partials/users.php'
@@ -33,6 +37,15 @@ app.config( ['$routeProvider', '$httpProvider', function( $routeProvider, $httpP
 		controller : 'userCreate',
 		templateUrl : 'partials/user-create.php'
 	});
+
+	// ============== orders ==================
+
+	$routeProvider.when('/orders', {
+		controller : 'orders',
+		templateUrl : 'partials/orders.php'
+	});
+
+	// ============== home ==================
 
 	$routeProvider.otherwise({
 		redirectTo: '/home'

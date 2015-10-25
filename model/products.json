@@ -1,0 +1,26 @@
+[ 
+	{ 
+		"name" : "pomarancza", 
+		"weight" : 195, 
+		"description" : "świeże, smaczne, z jamajki",
+		"price" : 10.86
+	},
+	{ 
+		"name" : "japko", 
+		"weight" : 160, 
+		"description" : "nieświeże, z polski",
+		"price" : 200
+	},
+	{ 
+		"name" : "ziemniaki", 
+		"weight" : 1400, 
+		"description" : "na frytki",
+		"price" : 9.99
+	}, 
+	{ 
+		"name" : "ananas", 
+		"weight" : 800, 
+		"description" : "dobry :P",
+		"price" : 97
+	} 
+]

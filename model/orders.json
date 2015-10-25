@@ -1,0 +1,98 @@
+﻿[ 
+	{ 
+		"userId" : 1, 
+		"name" : "Adrian", 
+		"email" : "adrfas@ds.pl",
+		"items" : 
+		[
+			{
+				"name": "ziemniaki",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+				"price": "12.88",
+				"weight": "11.99",
+				"qty":3
+			},
+			{
+				"name": "buraki",
+				"description": "Lorem adipisicing elit.",
+				"price": "9.31",
+				"weight": "3.74",
+				"qty":2
+			}
+		],
+		"total":68.42,
+		"status":0
+	},
+	{ 
+		"userId" : 2, 
+		"name" : "Mietek", 
+		"email" : "mieczyslaw@11s.pl",
+		"items" : 
+		[
+			{
+				"name": "kartofle",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, voluptas, ad.",
+				"price": "1.13",
+				"weight": "13.1",
+				"qty":2
+			},
+			{
+				"name": "getry",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi numquam aut, non?",
+				"price": "12.12",
+				"weight": "0.36",
+				"qty":1
+			}
+		],
+		"total":14.33,
+		"status":0
+	},
+	{ 
+		"userId" : 3, 
+		"name" : "Stefan", 
+		"email" : "stefam@ds.pl",
+		"items" : 
+		[
+			{
+				"name": "ananasy",
+				"description": "Lorem ipsum dolor sit amet, elit.",
+				"price": "1.28",
+				"weight": "1.0",
+				"qty":31
+			},
+			{
+				"name": "kalafior",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora?",
+				"price": "0.89",
+				"weight": "1.74",
+				"qty":10
+			}
+		],
+		"total":168.42,
+		"status":1
+	},
+	{ 
+		"userId" : 4, 
+		"name" : "Zbyszek", 
+		"email" : "zbychu@blabla.pl",
+		"items" : 
+		[
+			{
+				"name": "chleb",
+				"description": "Chleb ipsum...",
+				"price": "3.25",
+				"weight": "1.05",
+				"qty":2
+			},
+			{
+				"name": "cebula",
+				"description": "cebula ipsum bsf ipsum dolor.",
+				"price": "29.11",
+				"weight": "100.74",
+				"qty":4
+			}
+		],
+		"total":298.42,
+		"status":1
+	}
+]

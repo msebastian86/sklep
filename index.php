@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>stefanShop</title>
+    <title>stefanShop najtańsze ziemniaki w miescie</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -34,8 +34,6 @@
   
 <div ng-controller="navigation">
 
-
-
     <header>
         <nav class="navbar navbar-default">
           <div class="container">
@@ -59,6 +57,7 @@
                   <ul class="nav navbar-nav">
                     <li ng-class="{active : isActive( '/products' ) }"><a href="#/products">Products</a></li>
                     <li ng-class="{active : isActive( '/users' ) }"><a href="#/users">Users</a></li>
+                    <li ng-class="{active : isActive( '/orders' ) }"><a href="#/orders">Orders</a></li>
                   </ul>
               
                   <ul class="nav navbar-nav navbar-right">
@@ -76,18 +75,13 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
 
           <div ng-view>
             
           </div>
 
         </div>
-
-        <div class="col-sm-6">
-          <img src="img/zukwypas.png" alt="żuk :P" class="img-responsive">
-        </div> 
-
       </div>
     </div>
 

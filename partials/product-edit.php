@@ -1,28 +1,26 @@
-
-
 <form ng-submit="saveChanges( product )">
     <div class="row">
         <div class="col-md-6">
             
             <div class="form-group">
                 <label>Nazwa Produktu</label>
-                <input type="text" class="form-control" ng-model="product.nazwa">
+                <input type="text" class="form-control" ng-model="product.name">
             </div>
 
             <div class="form-group">
                 <label>Waga:</label>
-                <input type="text" class="form-control" ng-model="product.waga">
+                <input type="text" class="form-control" ng-model="product.weight">
             </div>
 
             <div class="form-group">
                 <label>Opis:</label>
-                <textarea rows="4" type="text" class="form-control" ng-model="product.opis">
+                <textarea rows="4" type="text" class="form-control" ng-model="product.description">
                 </textarea>
             </div>
 
             <div class="form-group">
                 <label>Cena:</label>
-                <input type="text" class="form-control" ng-model="product.cena">
+                <input type="text" class="form-control" ng-model="product.price">
             </div>
 
         </div>
@@ -30,9 +28,9 @@
         <div class="col-md-6">
                         
             {{product.nazwa}}
-            <br/><strong class="label label-warning">waga:</strong> {{product.waga}}
-            <br/><strong class="label label-warning">opis:</strong> {{product.opis}}
-            <br/><strong class="label label-warning">cena:</strong> {{(product.cena | number:2) + " €"}}
+            <br/><strong class="label label-warning">waga:</strong> {{product.weight}}
+            <br/><strong class="label label-warning">opis:</strong> {{product.description}}
+            <br/><strong class="label label-warning">cena:</strong> {{(product.price | number:2) + " €"}}
 
         </div>
 
