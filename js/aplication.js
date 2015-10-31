@@ -6,43 +6,43 @@ app.config( ['$routeProvider', '$httpProvider', function( $routeProvider, $httpP
 
 	// ============== products ==================
 
-	$routeProvider.when('/products', {
+	$routeProvider.when('/admin/products', {
 		controller : 'products',
-		templateUrl : 'partials/products.php'
+		templateUrl : 'partials/admin/products.php'
 	});
 
 	$routeProvider.when('/product/edit/:id', {
 		controller : 'productEdit',
-		templateUrl : 'partials/product-edit.php'
+		templateUrl : 'partials/admin/product-edit.php'
 	});
 
 	$routeProvider.when('/product/create', {
 		controller : 'productCreate',
-		templateUrl : 'partials/product-create.php'
+		templateUrl : 'partials/admin/product-create.php'
 	});
 
 	// ============== users ==================
 
-	$routeProvider.when('/users', {
+	$routeProvider.when('/admin/users', {
 		controller : 'users',
-		templateUrl : 'partials/users.php'
+		templateUrl : 'partials/admin/users.php'
 	});
 
 	$routeProvider.when('/user/edit/:id', {
 		controller : 'userEdit',
-		templateUrl : 'partials/user-edit.php'
+		templateUrl : 'partials/admin/user-edit.php'
 	});
 
 	$routeProvider.when('/user/create', {
 		controller : 'userCreate',
-		templateUrl : 'partials/user-create.php'
+		templateUrl : 'partials/admin/user-create.php'
 	});
 
 	// ============== orders ==================
 
-	$routeProvider.when('/orders', {
+	$routeProvider.when('/admin/orders', {
 		controller : 'orders',
-		templateUrl : 'partials/orders.php'
+		templateUrl : 'partials/admin/orders.php'
 	});
 
 	// ============== home ==================
