@@ -18,8 +18,10 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/angularjs/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.4.7/angular-route.min.js"></script>
-    <script src="js/aplication.js"></script>
-    <script src="js/controllers.js"></script>
+    <script src="js/application.js"></script>
+    <script src="js/controllers/controllers-admin.js"></script>
+    <script src="js/controllers/controllers-site.js"></script>
+    <script src="js/controllers/controllers-navigation.js"></script>
     <script src="js/moje.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

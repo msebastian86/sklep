@@ -27,7 +27,7 @@
     
         <div class="col-md-6">
                         
-            {{product.nazwa}}
+            {{product.name}}
             <br/><strong class="label label-warning">waga:</strong> {{product.weight}}
             <br/><strong class="label label-warning">opis:</strong> {{product.description}}
             <br/><strong class="label label-warning">cena:</strong> {{(product.price | number:2) + " €"}}
