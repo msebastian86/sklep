@@ -2,7 +2,7 @@
 
 var controllersNavigation = angular.module('controllersNavigation' , []);
 
-controllersNavigation.controller('navigation', ['$scope', '$location', function($scope, $location){
+controllersNavigation.controller('navigation', ['$scope', '$location', 'store', function($scope, $location, store){
 
 		//console.log( $location.path() );
 
@@ -17,5 +17,7 @@ controllersNavigation.controller('navigation', ['$scope', '$location', function(
 		$scope.isActive = function ( path ) {
 			return $location.path() ===  path;
 		};
+
+		store.set('test', 'zbychu nadpisał!');
 
 }]);

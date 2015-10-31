@@ -2,7 +2,7 @@
 
 var controllersAdmin = angular.module('controllersAdmin', []);
 
-controllersAdmin.controller('products', ['$scope', '$http', function($scope, $http){
+controllersAdmin.controller('products', ['$scope', '$http', 'cart', function($scope, $http, cart){
 
 		$http.get('model/products.json')
 			.success( function(data, status, headers){
@@ -21,6 +21,8 @@ controllersAdmin.controller('products', ['$scope', '$http', function($scope, $ht
 
 			//console.log( product );
 		};
+
+		cart.show();
 
 	// console.log($scope.products[2].opis);
 
