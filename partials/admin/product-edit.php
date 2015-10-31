@@ -37,6 +37,6 @@
         <hr/>
 
         <button type="submit" class="btn btn-primary">Zapisz pan zmiany</button>
-        <a href="#/products" class="btn btn-primary">Wróć, olej zmiany</a>
+        <a href="#/admin/products" class="btn btn-primary">Wróć, olej zmiany</a>
     </div>
 </form>

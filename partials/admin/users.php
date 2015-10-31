@@ -6,7 +6,7 @@
     </div>
     
     <div class="col-sm-6">
-        <p><a href="#/user/create" class="btn btn-success">ADD USER</a></p>
+        <p><a href="#/admin/user/create" class="btn btn-success">ADD USER</a></p>
     </div>
 </div>
 
@@ -29,7 +29,7 @@
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.role}}</td>
-                    <td><a href="#/user/edit/{{$index}}" class="btn btn-default" style="width:100%;"><span class="glyphicon glyphicon-pencil"></span> EDIT</a></td>
+                    <td><a href="#/admin/user/edit/{{$index}}" class="btn btn-default" style="width:100%;"><span class="glyphicon glyphicon-pencil"></span> EDIT</a></td>
                     <td><a ng-click="delete( user, $index )" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash"></span> DELETE</a></td>
                 </tr>
             </tbody>

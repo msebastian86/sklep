@@ -11,12 +11,12 @@ app.config( ['$routeProvider', '$httpProvider', function( $routeProvider, $httpP
 		templateUrl : 'partials/admin/products.php'
 	});
 
-	$routeProvider.when('/product/edit/:id', {
+	$routeProvider.when('/admin/product/edit/:id', {
 		controller : 'productEdit',
 		templateUrl : 'partials/admin/product-edit.php'
 	});
 
-	$routeProvider.when('/product/create', {
+	$routeProvider.when('/admin/product/create', {
 		controller : 'productCreate',
 		templateUrl : 'partials/admin/product-create.php'
 	});
@@ -28,12 +28,12 @@ app.config( ['$routeProvider', '$httpProvider', function( $routeProvider, $httpP
 		templateUrl : 'partials/admin/users.php'
 	});
 
-	$routeProvider.when('/user/edit/:id', {
+	$routeProvider.when('/admin/user/edit/:id', {
 		controller : 'userEdit',
 		templateUrl : 'partials/admin/user-edit.php'
 	});
 
-	$routeProvider.when('/user/create', {
+	$routeProvider.when('/admin/user/create', {
 		controller : 'userCreate',
 		templateUrl : 'partials/admin/user-create.php'
 	});

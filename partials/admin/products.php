@@ -6,7 +6,7 @@
             </div>
             
             <div class="col-sm-6">
-                <p><a href="#/product/create" class="btn btn-success">CREATE PRODUCT</a></p>
+                <p><a href="#/admin/product/create" class="btn btn-success">CREATE PRODUCT</a></p>
             </div>
         </div>
         
@@ -20,7 +20,7 @@
         
             <div class="row">
                 <div class="col-xs-6">
-                    <p><a href="#/product/edit/{{$index}}" class="btn btn-default" style="width:100%;">EDIT</a></p>
+                    <p><a href="#/admin/product/edit/{{$index}}" class="btn btn-default" style="width:100%;">EDIT</a></p>
                 </div>
                 <div class="col-xs-6">
                     <p><a ng-click="delete( product, $index )" class="btn btn-danger" style="width:100%;">DELETE</a></p>

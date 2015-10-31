@@ -34,7 +34,7 @@
 
             <hr/>
             <button type="submit" class="btn btn-primary">Dodaj chłopa</button>
-            <a href="#/users" class="btn btn-primary">Wróć, olej zmiany</a>
+            <a href="#/admin/users" class="btn btn-primary">Wróć, olej zmiany</a>
 
         </div>
     </div>
