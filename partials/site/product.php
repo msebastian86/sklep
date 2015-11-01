@@ -8,7 +8,9 @@
         			<strong class="label label-warning pull-right">{{(product.price | number:2) + " €"}} </strong>
         		</h2>
         		<p><strong class="label label-info">waga:</strong> {{product.weight}} kg</p>
-        		<p style="margin-bottom:0;">{{product.description}}</p>
+                <button ng-click="addToCart( product )" class="btn btn-primary pull-right">Dodaj do koszyka</button>
+                <p style="margin-bottom:0;">{{product.description}}</p>
+
         	</div>
         </div>
 

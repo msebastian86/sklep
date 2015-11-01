@@ -57,6 +57,11 @@ app.config( ['$routeProvider', '$httpProvider', function( $routeProvider, $httpP
 		templateUrl : 'partials/site/product.php'
 	});
 
+	$routeProvider.when('/cart', {
+		controller : 'cartCtrl',
+		templateUrl : 'partials/site/cart.php'
+	});
+
 
 	// ============== home ==================
 

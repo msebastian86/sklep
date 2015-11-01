@@ -2,7 +2,7 @@
 
 var controllersSite = angular.module('controllersSite', []);
 
-controllersSite.controller('siteProducts', ['$scope', '$http', function($scope, $http){
+controllersSite.controller('siteProducts', ['$scope', '$http', 'cartSrv', function($scope, $http, cartSrv){
 
 		$http.get('model/products.json')
 			.success( function(data, status, headers){
@@ -12,22 +12,15 @@ controllersSite.controller('siteProducts', ['$scope', '$http', function($scope, 
 				console.log('cos sie zjebał JSON :/');
 		});
 
-		$scope.delete = function ( product, $index ) {
-
-			//console.log( $scope.products[$index] );
-
-			$scope.products.splice( $index , 1 );
-			// [który index, ile elementów, dodanie czegoś ]
-
-			//console.log( product );
+		$scope.addToCart = function ( product ) {
+			cartSrv.add( product );
 		};
 
 	// console.log($scope.products[2].opis);
 
 }]);
 
-controllersSite.controller('siteProduct', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
-
+controllersSite.controller('siteProduct', ['$scope', '$http', '$routeParams', 'cartSrv', function($scope, $http, $routeParams, cartSrv){
 
 		$http.post('model/products.json')
 
@@ -38,6 +31,10 @@ controllersSite.controller('siteProduct', ['$scope', '$http', '$routeParams', fu
 			.error( function(){
 				console.log('cos sie zjebał JSON :/');
 		});
+
+			$scope.addToCart = function ( product ) {
+				cartSrv.add( product );
+			};
 
 	// console.log($scope.products[2].opis);
 
@@ -53,4 +50,16 @@ controllersSite.controller('siteOrders', ['$scope', '$http', function($scope, $h
 		.error( function(){
 			console.log('cos sie zjebał JSON :/');
 	});
+
+}]);
+
+
+controllersSite.controller('cartCtrl', ['$scope', '$http', 'cartSrv', function($scope, $http, cartSrv){
+
+	$scope.cart = cartSrv.show();
+
+	$scope.emptyCart = function () {
+		cartSrv.empty();
+	};
+
 }]);

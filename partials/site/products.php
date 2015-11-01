@@ -21,6 +21,12 @@
                         <h3 class="pull-right" style="margin-top:0;">{{$index}}</h3>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button ng-click="addToCart( product )" class="btn btn-primary pull-right">Dodaj do koszyka</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

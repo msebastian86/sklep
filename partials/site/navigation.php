@@ -23,6 +23,7 @@
               </ul>
           
               <ul class="nav navbar-nav navbar-right">
+                <li ng-class="{active : isActive( '/cart' ) }"><a href="#/cart">Cart</a></li>
                 <li ng-class="{active : isActive( '/orders' ) }"><a href="#/orders">Orders</a></li>
                 <li ng-class="{active : isActive( '/login' ) }"><a href="#/login">LogIn</a></li>
                 <li ng-class="{active : isActive( '/login' ) }"><a href="#/admin/users">Admin</a></li>

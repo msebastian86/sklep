@@ -2,7 +2,7 @@
 
 var controllersNavigation = angular.module('controllersNavigation' , []);
 
-controllersNavigation.controller('navigation', ['$scope', '$location', 'store', function($scope, $location, store){
+controllersNavigation.controller('navigation', ['$scope', '$location', 'cartSrv', function($scope, $location, cartSrv){
 
 		//console.log( $location.path() );
 
@@ -18,6 +18,6 @@ controllersNavigation.controller('navigation', ['$scope', '$location', 'store', 
 			return $location.path() ===  path;
 		};
 
-		store.set('test', 'zbychu nadpisał!');
+		//store.set('test', 'zbychu nadpisał!');
 
 }]);
