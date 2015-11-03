@@ -42,13 +42,19 @@ myServices.factory( 'cartSrv', [ 'store' , function( store ) {
 			cart.push( product );
 		}
 
-		//tore.set( 'cart', cart );
+		//store.set( 'cart', cart );
 		console.log( cart );
 	};
 
 	cart.empty = function () {
 		store.remove('cart');
 		cart.length = 0;
+	};
+
+	//po usunieciu itemu z koszyka nadpisujemy nowa wersje koszyka (nie da się usunac w local storage)
+
+	cart.update = function ( newCart ) {
+		store.set( 'cart', newCart ); 
 	};
 
 	return cart;

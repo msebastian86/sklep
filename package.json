@@ -1,3 +1,4 @@
+﻿/*jslint node: true */
 {
   "name": "sklep",
   "description": "SKLEP website",

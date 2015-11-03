@@ -1,3 +1,4 @@
+﻿/*jslint node: true */
 var gulp = require('gulp');
 var less = require('gulp-less');
 var rename = require('gulp-rename');
