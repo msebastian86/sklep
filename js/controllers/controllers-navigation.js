@@ -18,6 +18,13 @@ controllersNavigation.controller('navigation', ['$scope', '$location', 'cartSrv'
 			return $location.path() ===  path;
 		};
 
+		$scope.$watch(function(){
+			$scope.cart = cartSrv.show().length;
+
+		});
+
+		console.log($scope.cart);
+
 		//store.set('test', 'zbychu nadpisał!');
 
 }]);

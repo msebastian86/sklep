@@ -54,7 +54,7 @@ controllersSite.controller('siteOrders', ['$scope', '$http', function($scope, $h
 }]);
 
 
-controllersSite.controller('cartCtrl', ['$scope', '$http', 'cartSrv', function($scope, $http, cartSrv){
+controllersSite.controller('cartCtrl', ['$scope', '$http', '$filter', 'cartSrv', function($scope, $http, $filter, cartSrv){
 
 	$scope.cart = cartSrv.show();
 
@@ -65,25 +65,46 @@ controllersSite.controller('cartCtrl', ['$scope', '$http', 'cartSrv', function($
 	$scope.total = function () {
 
 		var total = 0;
-
-		angular.forEach( $scope.cart, function (item){
-
+		angular.forEach( $scope.cart, function (item) {
 			total += item.qty * item.price;
-
 		});
 
+		total = $filter( 'number' )( total , 2 );
 		return total;
 	};
 
-	$scope.update = function (item, $index) {
+	$scope.removeItem = function ($index) {
 
 		$scope.cart.splice( $index, 1 );
 		cartSrv.update( $scope.cart );
 	};
 
 	$scope.setOrder = function ( $event ){
-		console.log('zamowienie');
+		console.log('zamowienie:');
 		//$event.preventDefault();
+
+		//TODO: sprawdz czy user zalogowany
+
+		var loggedIn = true;
+
+		if ( !loggedIn )
+		{
+			$scope.alert = { type : 'warning' , msg : 'Błąd, zaloguj się'};
+			$event.preventDefault();
+			return false;
+			// return zeby zatrzymac funkcje -nie zapisywanie smieci w bazie
+		}
+
+		//TODO: zapisz zamowienia w bazie
+		console.log( $scope.total() );
+		console.log( $scope.cart );
+
+		$scope.alert = { type : 'success', msg : 'Trwa składanie zamówienia...'};
+
+		cartSrv.empty();
+
+		$('#paypalForm').submit();
+
 	}
 
 	//do sprawdzania zmian w koszyku chociaz u mnie dzialalo bez tego??
