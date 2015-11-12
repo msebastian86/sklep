@@ -26,7 +26,7 @@ myServices.factory( 'cartSrv', [ 'store' , function( store ) {
 
 		var addNew = true;
 
-		angular.forEach( cart, function( value, key ){
+		angular.forEach( cart, function ( value , key ){
 
 			if ( value.name == product.name )
 			{

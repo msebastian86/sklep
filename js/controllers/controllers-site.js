@@ -100,16 +100,16 @@ controllersSite.controller('cartCtrl', ['$scope', '$http', '$filter', 'cartSrv',
 		console.log( $scope.cart );
 
 		$scope.alert = { type : 'success', msg : 'Trwa składanie zamówienia...'};
-
 		cartSrv.empty();
 
+		$event.preventDefault();
 		$('#paypalForm').submit();
 
 	}
 
 	//do sprawdzania zmian w koszyku chociaz u mnie dzialalo bez tego??
-	$scope.$watch( function(){
-		cartSrv.update();
+	$scope.$watch( function (){
+		cartSrv.update( $scope.cart );
 	});
 
 }]);
