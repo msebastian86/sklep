@@ -99,11 +99,11 @@ controllersSite.controller('cartCtrl', ['$scope', '$http', '$filter', 'cartSrv',
 		console.log( $scope.total() );
 		console.log( $scope.cart );
 
-		$scope.alert = { type : 'success', msg : 'Trwa składanie zamówienia...'};
-		cartSrv.empty();
+		$scope.alert = { type : 'success' , msg : 'Trwa składanie zamówienia...' };
+		//cartSrv.empty();
 
 		$event.preventDefault();
-		$('#paypalForm').submit();
+		$( '#paypalForm' ).submit();
 
 	}
 

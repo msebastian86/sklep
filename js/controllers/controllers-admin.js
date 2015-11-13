@@ -2,10 +2,10 @@
 
 var controllersAdmin = angular.module('controllersAdmin', []);
 
-controllersAdmin.controller('products', ['$scope', '$http', 'cart', function($scope, $http, cart){
+controllersAdmin.controller('products', ['$scope', '$http', function($scope, $http){
 
 		$http.get('model/products.json')
-			.success( function(data, status, headers){
+			.success( function(data){
 				$scope.products = data;
 			})
 			.error( function(){
@@ -21,8 +21,6 @@ controllersAdmin.controller('products', ['$scope', '$http', 'cart', function($sc
 
 			//console.log( product );
 		};
-
-		cart.show();
 
 	// console.log($scope.products[2].opis);
 
@@ -144,6 +142,6 @@ controllersAdmin.controller('orders', ['$scope', '$http', function($scope, $http
 		else
 			order.status = 0;
 		
-		console.log(order.status);
+		//console.log(order.status);
 	};
 }]);

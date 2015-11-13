@@ -42,8 +42,9 @@ myServices.factory( 'cartSrv', [ 'store' , function( store ) {
 			cart.push( product );
 		}
 
-		//store.set( 'cart', cart );
-		console.log( cart );
+		store.set( 'cart' , cart.show() );
+
+		//console.log( cart );
 	};
 
 	cart.empty = function () {
