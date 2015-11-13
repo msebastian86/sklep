@@ -19,8 +19,10 @@
     <script src="bower_components/angularjs/angular.min.js"></script>
     <script src="bower_components/a0-angular-storage/dist/angular-storage.min.js"></script>
     <script src="https://code.angularjs.org/1.4.7/angular-route.min.js"></script>
+    <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
     <script src="js/application.js"></script>
     <script src="js/services.js"></script>
+    <script src="js/directives.js"></script>
     <script src="js/controllers/controllers-admin.js"></script>
     <script src="js/controllers/controllers-site.js"></script>
     <script src="js/controllers/controllers-navigation.js"></script>
@@ -35,23 +37,23 @@
 </head>
 
 <body ng-app="app">
-  
-<div ng-controller="navigation" ng-include="navigation()">
-</div>
-
-
-
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-
-        <div ng-view>
-          
-        </div>
-
-      </div>
+      
+    <div ng-controller="navigation" ng-include="navigation()">
     </div>
-  </div>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div ng-view>
+          
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
 

@@ -1,7 +1,6 @@
-﻿
-'use strict';
+﻿'use strict';
 
-var myServices = angular.module('myServices', []);
+var myServices = angular.module('myServices', [] );
 
 // factory są dostepne w dowolnym kontrolerze
 

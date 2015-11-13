@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-var controllersAdmin = angular.module('controllersAdmin', []);
+var controllersAdmin = angular.module('controllersAdmin', [ 'angularFileUpload' , 'myDirectives' ]);
 
 controllersAdmin.controller('products', ['$scope', '$http', function($scope, $http){
 
@@ -14,10 +14,12 @@ controllersAdmin.controller('products', ['$scope', '$http', function($scope, $ht
 
 		$scope.delete = function ( product, $index ) {
 
-			//console.log( $scope.products[$index] );
-
+			if ( !confirm ( 'czy napewno usunac produkt?' ) )
+				return false;
+			
 			$scope.products.splice( $index , 1 );
 			// [który index, ile elementów, dodanie czegoś ]
+			//console.log( $scope.products[$index] );
 
 			//console.log( product );
 		};
@@ -26,7 +28,7 @@ controllersAdmin.controller('products', ['$scope', '$http', function($scope, $ht
 
 }]);
 
-controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', 'FileUploader' , function($scope, $http, $routeParams, FileUploader){
 
 
 		$http.post('model/products.json')
@@ -44,7 +46,25 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', f
 			console.log( $routeParams.id );
 		};
 
-	// console.log($scope.products[2].opis);
+		var uploader = $scope.uploader = new FileUploader({
+            url: '' //sciezka do api obslugujacego upload
+        });
+
+        // FILTERS dla uploadera (ogranicza pliki do obrazków)
+
+        uploader.filters.push({
+            name: 'imageFilter',
+            fn: function(item /*{File|FileLikeObject}*/, options) {
+                var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+            }
+        });
+
+        uploader.onCompleteItem = function(fileItem, response, status, headers) {
+            console.info('onCompleteItem', fileItem, response, status, headers);
+        };
+
+		// console.log($scope.products[2].opis);
 
 }]);
 
@@ -73,6 +93,9 @@ controllersAdmin.controller('users', ['$scope', '$http', function($scope, $http)
 	});
 
 	$scope.delete = function ( user, $index ) {
+
+		if ( !confirm ( 'czy napewno usunac goscia?' ) )
+			return false;
 
 		//console.log( $scope.userss[$index] );
 
@@ -137,11 +160,11 @@ controllersAdmin.controller('orders', ['$scope', '$http', function($scope, $http
 	$scope.changeStatus = function ( order ) {
 
 		if (order.status == 0) 
-
 			order.status = 1;
 		else
 			order.status = 0;
 		
 		//console.log(order.status);
 	};
+	
 }]);

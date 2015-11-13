@@ -20,10 +20,10 @@
         
             <div class="row">
                 <div class="col-xs-6">
-                    <p><a href="#/admin/product/edit/{{$index}}" class="btn btn-default" style="width:100%;">EDIT</a></p>
+                    <p><a ng-click="delete( product, $index )" class="btn btn-danger" style="width:100%;">DELETE</a></p>
                 </div>
                 <div class="col-xs-6">
-                    <p><a ng-click="delete( product, $index )" class="btn btn-danger" style="width:100%;">DELETE</a></p>
+                    <p><a href="#/admin/product/edit/{{$index}}" class="btn btn-primary" style="width:100%;">EDIT</a></p>
                 </div>
             </div>
         </div>
