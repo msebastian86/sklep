@@ -26,7 +26,8 @@
                 <li ng-if="cart" ng-class="{active : isActive( '/cart' ) }"><a href="#/cart">Cart</a></li>
                 <li ng-class="{active : isActive( '/orders' ) }"><a href="#/orders">Orders</a></li>
                 <li ng-class="{active : isActive( '/login' ) }"><a href="#/login">LogIn</a></li>
-                <li ng-class="{active : isActive( '/login' ) }"><a href="#/admin/users">Admin</a></li>
+                <li ng-class="{active : isActive( '/register' ) }"><a href="#/register">Register</a></li>
+                <li ng-class="{active : isActive( '/admin' ) }"><a href="#/admin/users">Admin</a></li>
               </ul>
     
             </div><!-- /.navbar-collapse -->

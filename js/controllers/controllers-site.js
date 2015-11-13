@@ -113,3 +113,43 @@ controllersSite.controller('cartCtrl', ['$scope', '$http', '$filter', 'cartSrv',
 	});
 
 }]);
+
+
+controllersAdmin.controller('orders', ['$scope', '$http', function($scope, $http){
+
+	$http.get('model/orders.json')
+		.success( function(data){
+			$scope.orders = data;
+		})
+		.error( function(){
+			console.log('cos sie zjebał JSON :/');
+	});
+
+}]);
+
+
+controllersAdmin.controller('login', ['$scope', '$http', function($scope, $http){
+
+	// TODO: pobrać dane z form i przesłac do bazy - uwierztelnainie
+
+	$scope.input = {};
+
+	$scope.formSubmit = function (argument) {
+		$scope.errors = {};
+		$scope.errors.login = 'Błędne hasło / email';
+		console.log( $scope.input );
+	};
+
+}]);
+
+controllersAdmin.controller('register', ['$scope', '$http', function($scope, $http){
+
+	// TODO: pobrać dane z form i przesłac do bazy - uwierztelnainie 
+	$scope.formSubmit = function (argument) {
+		$scope.errors = {};
+		$scope.errors.name = 'przykładowy błąd';
+		$scope.submit = true;
+		console.log( $scope.input );
+	};
+
+}]);
