@@ -47,7 +47,7 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
 		};
 
 		var uploader = $scope.uploader = new FileUploader({
-            url: '' //sciezka do api obslugujacego upload
+            url: 'api/admin/images/upload/' + $routeParams.id //sciezka do api obslugujacego upload
         });
 
         // FILTERS dla uploadera (ogranicza pliki do obrazków)
