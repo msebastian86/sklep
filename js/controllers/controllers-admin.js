@@ -30,24 +30,43 @@ controllersAdmin.controller('products', ['$scope', '$http', function($scope, $ht
 
 controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', 'FileUploader' , function($scope, $http, $routeParams, FileUploader){
 
+		var id = $routeParams.id;
+		$scope.id = id;
+
 
 		$http.post('model/products.json')
 
 			.success( function(data){
 				var products = data;
-				$scope.product = products[$routeParams.id];
+				$scope.product = products[id];
 			})
 			.error( function(){
 				console.log('cos sie zjebał JSON :/');
 		});
 
+		function getImages(){
+			
+			$http.get('api/admin/images/get/' + id)
+
+				.success( function(data){
+					$scope.images = data;
+				})
+				.error( function(){
+					console.log('cos sie zjebał JSON :/');
+			});
+
+		}
+
+		getImages();
+
+
 		$scope.saveChanges = function ( product ) {
 			console.log( product );
-			console.log( $routeParams.id );
+			console.log( id );
 		};
 
 		var uploader = $scope.uploader = new FileUploader({
-            url: 'api/admin/images/upload/' + $routeParams.id //sciezka do api obslugujacego upload
+            url: 'api/admin/images/upload/' + id //sciezka do api obslugujacego upload
         });
 
         // FILTERS dla uploadera (ogranicza pliki do obrazków)
@@ -62,6 +81,7 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
 
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
             console.info('onCompleteItem', fileItem, response, status, headers);
+            getImages();
         };
 
 		// console.log($scope.products[2].opis);
@@ -114,7 +134,7 @@ controllersAdmin.controller('userEdit', ['$scope', '$http', '$routeParams', func
 
 			.success( function(data){
 				var users = data;
-				$scope.user = users[$routeParams.id];
+				$scope.user = users[id];
 			})
 			.error( function(){
 				console.log('cos sie zjebał JSON :/');
@@ -122,7 +142,7 @@ controllersAdmin.controller('userEdit', ['$scope', '$http', '$routeParams', func
 
 		$scope.saveChanges = function ( user ) {
 			console.log( user );
-			console.log( $routeParams.id );
+			console.log( id );
 		};
 
 	// console.log($scope.users[2].opis);

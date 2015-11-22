@@ -34,6 +34,10 @@
             <br/><strong class="label label-warning">opis:</strong> {{product.description}}
             <br/><strong class="label label-warning">cena:</strong> {{(product.price | number:2) + " €"}}
 
+            <div ng-repeat="image in images" style="margin-top:10px;">
+              <img ng-src="uploads/{{ id }}/{{ image }}" alt="{{product.name}}" style="width:150px; margin-right:5px;" class="img-thumbnail pull-left margin-10">
+            </div>
+
         </div>
 
         <div class="clearfix"></div>

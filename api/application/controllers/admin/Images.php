@@ -29,7 +29,34 @@ class Images extends CI_Controller {
 
 		    echo 'No files';
 		}
-
 	}
 	
+
+	public function get( $id )
+	{
+		$basePath = FCPATH . '..' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR;
+		$basePath = $basePath . $id . DIRECTORY_SEPARATOR;
+
+		if (!is_dir($basePath))
+		{
+			return;
+		}
+
+		$files = scandir( $basePath );
+		//to nizej usówa kropki z arraya -adresu
+		//var_dump( $files );
+
+		$files = array_diff( $files , array( '.' , '..' ) );
+
+		$newFiles = array();
+
+		foreach ($files as $file) {
+			//zresetuj id w arrayu
+			$newFiles[] .= $file;
+		}
+
+		//var_dump( $newFiles );
+
+		echo json_encode( $newFiles );
+	}
 }
