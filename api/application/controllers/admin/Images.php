@@ -43,7 +43,7 @@ class Images extends CI_Controller {
 		}
 
 		$files = scandir( $basePath );
-		//to nizej usówa kropki z arraya -adresu
+		//to nizej usuwa kropki z arraya -adresu
 		//var_dump( $files );
 
 		$files = array_diff( $files , array( '.' , '..' ) );
@@ -58,5 +58,23 @@ class Images extends CI_Controller {
 		//var_dump( $newFiles );
 
 		echo json_encode( $newFiles );
+	}
+
+	public function delete($value='')
+	{
+		$post = file_get_contents('php://input');
+		// true odbiera jako tablice array (zamiast obiektu- wtedybez true)
+		$_POST = json_decode($post, true);
+		// var_dump( $_POST );
+
+		$id = $this->input->post('id');
+		$image = $this->input->post('image');
+
+		$imagePath = FCPATH . '..' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR;
+		$imagePath = $imagePath . $id . DIRECTORY_SEPARATOR;
+		$imagePath = $imagePath . $image;
+		
+		// funkcja unlink poprostu usuwa
+		unlink ($imagePath);
 	}
 }

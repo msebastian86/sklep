@@ -30,15 +30,15 @@ controllersAdmin.controller('products', ['$scope', '$http', function($scope, $ht
 
 controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', 'FileUploader' , function($scope, $http, $routeParams, FileUploader){
 
-		var id = $routeParams.id;
-		$scope.id = id;
+		var productId = $routeParams.id;
+		$scope.id = productId;
 
 
 		$http.post('model/products.json')
 
 			.success( function(data){
 				var products = data;
-				$scope.product = products[id];
+				$scope.product = products[productId];
 			})
 			.error( function(){
 				console.log('cos sie zjebał JSON :/');
@@ -46,7 +46,7 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
 
 		function getImages(){
 			
-			$http.get('api/admin/images/get/' + id)
+			$http.get('api/admin/images/get/' + productId)
 
 				.success( function(data){
 					$scope.images = data;
@@ -62,11 +62,11 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
 
 		$scope.saveChanges = function ( product ) {
 			console.log( product );
-			console.log( id );
+			console.log( productId );
 		};
 
 		var uploader = $scope.uploader = new FileUploader({
-            url: 'api/admin/images/upload/' + id //sciezka do api obslugujacego upload
+            url: 'api/admin/images/upload/' + productId //sciezka do api obslugujacego upload
         });
 
         // FILTERS dla uploadera (ogranicza pliki do obrazków)
@@ -80,8 +80,28 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
         });
 
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
-            console.info('onCompleteItem', fileItem, response, status, headers);
+            // console.info('onCompleteItem', fileItem, response, status, headers);
             getImages();
+        };
+
+        $scope.delImage = function ( imageName, $index ) {
+        	$scope.images.splice( $index , 1 )
+
+        	$http.post('api/admin/images/delete/', {
+
+        		id : productId,
+        		image : imageName
+
+        	})
+        		.success( function(){
+        			
+        		})
+        		.error( function(){
+        			console.log('cos sie zjebał JSON :/');
+        	});
+
+
+        	console.log("usunięte");
         };
 
 		// console.log($scope.products[2].opis);
