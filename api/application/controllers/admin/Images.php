@@ -60,7 +60,7 @@ class Images extends CI_Controller {
 		echo json_encode( $newFiles );
 	}
 
-	public function delete($value='')
+	public function delete()
 	{
 		$post = file_get_contents('php://input');
 		// true odbiera jako tablice array (zamiast obiektu- wtedybez true)
@@ -73,7 +73,7 @@ class Images extends CI_Controller {
 		$imagePath = FCPATH . '..' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR;
 		$imagePath = $imagePath . $id . DIRECTORY_SEPARATOR;
 		$imagePath = $imagePath . $image;
-		
+
 		// funkcja unlink poprostu usuwa
 		unlink ($imagePath);
 	}
