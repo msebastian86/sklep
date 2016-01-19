@@ -1,3 +1,5 @@
 #sublime project files
 *.sublime-project
 *.sublime-workspace
+test.php
+database.php

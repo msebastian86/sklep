@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'mysql.cba.pl',
-	'username' => 'portoflio',
-	'password' => 'sklep123',
-	'database' => 'gfxportfolio_cba_pl_2',
+	'hostname' => '91.237.52.174',
+	'username' => 'gfxportf_sklep',
+	'password' => 'lubieplacki',
+	'database' => 'gfxportf_sklep',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

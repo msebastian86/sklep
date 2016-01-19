@@ -4,12 +4,12 @@ var controllersAdmin = angular.module('controllersAdmin', [ 'angularFileUpload' 
 
 controllersAdmin.controller('products', ['$scope', '$http', function($scope, $http){
 
-		$http.get('model/products.json')
+		$http.get('api/admin/products/get')
 			.success( function(data){
 				$scope.products = data;
 			})
 			.error( function(){
-				console.log('cos sie zjebał JSON :/');
+				console.log('lipa z połączeniem do sql :/');
 		});
 
 		$scope.delete = function ( product, $index ) {
@@ -34,14 +34,13 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
 		$scope.id = productId;
 
 
-		$http.post('model/products.json')
+		$http.get('api/admin/products/get/' + productId)
 
 			.success( function(data){
-				var products = data;
-				$scope.product = products[productId];
+				$scope.product = data;
 			})
 			.error( function(){
-				console.log('cos sie zjebał JSON :/');
+				console.log('problem z popraniem danych bazy sql :/');
 		});
 
 		function getImages(){
@@ -52,7 +51,7 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
 					$scope.images = data;
 				})
 				.error( function(){
-					console.log('cos sie zjebał JSON :/');
+					console.log('problem z popraniem danych bazy sql :/');
 			});
 
 		}
@@ -124,13 +123,15 @@ controllersAdmin.controller('productCreate', ['$scope', '$http', function($scope
 
 controllersAdmin.controller('users', ['$scope', '$http', function($scope, $http){
 
-	$http.get('model/users.json')
+	$http.get('api/admin/users/get')
 		.success( function(data){
 			$scope.users = data;
 		})
 		.error( function(){
-			console.log('cos sie zjebał JSON :/');
+			console.log('lipa z połączeniem do sql :/');
 	});
+
+
 
 	$scope.delete = function ( user, $index ) {
 

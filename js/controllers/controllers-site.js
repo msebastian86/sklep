@@ -4,12 +4,12 @@ var controllersSite = angular.module('controllersSite', []);
 
 controllersSite.controller('siteProducts', ['$scope', '$http', 'cartSrv', function($scope, $http, cartSrv){
 
-		$http.get('model/products.json')
-			.success( function(data, status, headers){
+		$http.get('api/admin/products/get')
+			.success( function(data){
 				$scope.products = data;
 			})
 			.error( function(){
-				console.log('cos sie zjebał JSON :/');
+				console.log('lipa z połączeniem do sql :/');
 		});
 
 		$scope.addToCart = function ( product ) {
@@ -22,19 +22,20 @@ controllersSite.controller('siteProducts', ['$scope', '$http', 'cartSrv', functi
 
 controllersSite.controller('siteProduct', ['$scope', '$http', '$routeParams', 'cartSrv', function($scope, $http, $routeParams, cartSrv){
 
-		$http.post('model/products.json')
+		var productId = $routeParams.id;
+		$scope.id = productId;
 
+		$http.get('api/admin/products/get/' + productId)
 			.success( function(data){
-				var products = data;
-				$scope.product = products[$routeParams.id];
+				$scope.product = data;
 			})
 			.error( function(){
-				console.log('cos sie zjebał JSON :/');
-		});
+				console.log('lipa z połączeniem do sql :/');
+		});	
 
-			$scope.addToCart = function ( product ) {
-				cartSrv.add( product );
-			};
+		$scope.addToCart = function ( product ) {
+			cartSrv.add( product );
+		};
 
 	// console.log($scope.products[2].opis);
 

@@ -41,8 +41,6 @@
     <div ng-controller="navigation" ng-include="navigation()">
     </div>
 
-
-
     <div class="container">
         <div class="row">
             <div class="col-sm-12">

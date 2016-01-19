@@ -25,12 +25,12 @@
             </thead>
             <tbody>
                 <tr ng-repeat="user in users | filter : search">
-                    <td>{{ $index }}</td>
+                    <td>{{ user.id }}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.role}}</td>
-                    <td><a href="#/admin/user/edit/{{$index}}" class="btn btn-default" style="width:100%;"><span class="glyphicon glyphicon-pencil"></span> EDIT</a></td>
-                    <td><a ng-click="delete( user, $index )" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash"></span> DELETE</a></td>
+                    <td><a href="#/admin/user/edit/{{user.id}}" class="btn btn-default" style="width:100%;"><span class="glyphicon glyphicon-pencil"></span> EDIT</a></td>
+                    <td><a ng-click="delete( user, user.id )" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash"></span> DELETE</a></td>
                 </tr>
             </tbody>
         </table>

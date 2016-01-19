@@ -11,7 +11,7 @@
         </div>
         
         <div class="alert alert-info" ng-repeat="product in products | filter : search">
-            <h2 class="pull-right">{{$index}}</h2>
+            <h2 class="pull-right">{{product.id}}</h2>
             <strong>nazwa:</strong> {{ product.name | uppercase}}
             <br/><strong>waga sztuki:</strong> {{ product.weight }}
             <br/><strong>opis:</strong> {{ product.description }}
@@ -23,7 +23,7 @@
                     <p><a ng-click="delete( product, $index )" class="btn btn-danger" style="width:100%;">DELETE</a></p>
                 </div>
                 <div class="col-xs-6">
-                    <p><a href="#/admin/product/edit/{{$index}}" class="btn btn-primary" style="width:100%;">EDIT</a></p>
+                    <p><a href="#/admin/product/edit/{{product.id}}" class="btn btn-primary" style="width:100%;">EDIT</a></p>
                 </div>
             </div>
         </div>
