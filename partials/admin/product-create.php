@@ -1,4 +1,4 @@
-<form ng-submit="createProduct()">
+<form ng-submit="createProduct( product )">
     <div class="row">
         <div class="col-md-6">
             
@@ -37,8 +37,11 @@
     <hr/>
     <div class="row">
         <div class="col-sm-12">
-            <button type="submit" class="btn btn-primary">Zapisz pan zmiany</button>
             <a href="#/admin/products" class="btn btn-primary">Wróć, olej zmiany</a>
+
+            <button type="submit" class="btn btn-primary btn-lg" ng-if="!success">Dodaj Produkt</button>
+            <button type="button" class="btn btn-success btn-lg" ng-if="success">Produkt dodany!</button>
+
         </div>
     </div>
 

@@ -21,14 +21,22 @@ controllersAdmin.controller('products', ['$scope', '$http', function($scope, $ht
 			// [który index, ile elementów, dodanie czegoś ]
 			//console.log( $scope.products[$index] );
 
-			//console.log( product );
+
+			$http.post('api/admin/products/delete/' , {
+				product : product
+			}).error( function(){
+				console.log('Błąd komunikacji z API');
+			});
+
+
+
 		};
 
 	// console.log($scope.products[2].opis);
 
 }]);
 
-controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', 'FileUploader' , function($scope, $http, $routeParams, FileUploader){
+controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', 'FileUploader', '$timeout' , function($scope, $http, $routeParams, FileUploader, $timeout){
 
 		var productId = $routeParams.id;
 		$scope.id = productId;
@@ -46,7 +54,6 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
 		function getImages(){
 			
 			$http.get('api/admin/images/get/' + productId)
-
 				.success( function(data){
 					$scope.images = data;
 				})
@@ -58,10 +65,27 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
 
 		getImages();
 
-
 		$scope.saveChanges = function ( product ) {
-			console.log( product );
-			console.log( productId );
+
+			$http.post('api/admin/products/update/' , {
+
+				product : product
+
+				}).success( function(){
+					$scope.success = true;
+
+					// timeout to serwis angulara, do opóźnien, rejestrowany troche wyżej...
+
+					$timeout(function(){
+						$scope.success = false;	
+					} , 3500 );
+				})
+				.error( function(){
+					console.log('problem z popraniem danych bazy sql :/');
+			});
+
+			// console.log( product );
+			// console.log( productId );
 		};
 
 		var uploader = $scope.uploader = new FileUploader({
@@ -108,12 +132,30 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
 }]);
 
 
-controllersAdmin.controller('productCreate', ['$scope', '$http', function($scope, $http){
+controllersAdmin.controller('productCreate', ['$scope', '$http', '$timeout',  function($scope, $http, $timeout){
 
 
-		$scope.createProduct = function () {
-			// TODO połączyć z API
-			console.log( $scope.product );
+		$scope.createProduct = function ( product ) {
+			$http.post('api/admin/products/create/' , {
+
+				product : product
+
+				}).success( function(){
+					$scope.success = true;
+
+					// timeout to serwis angulara, do opóźnien, rejestrowany troche wyżej...
+
+					$timeout(function(){
+						$scope.success = false;
+
+						// żeby się wyczyscily pola
+						$scope.product = {};
+
+					} , 3500 );
+				})
+				.error( function(){
+					console.log('Błąd komunikacji z API');
+			});
 		};
 
 	// console.log($scope.products[2].opis);

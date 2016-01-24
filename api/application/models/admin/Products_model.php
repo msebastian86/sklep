@@ -23,4 +23,28 @@ class Products_model extends CI_Model {
 
 	}
 
+	public function update( $product )
+	{
+		// updatuje produkt o przekazanym id....
+		$this->db->where('id', $product['id']);
+
+		// podajemy nazwe tabeli w której updatujemy...
+		$this->db->update('products', $product);
+	}
+
+	public function create( $product )
+	{
+		// podajemy nazwe tabeli w której updatujemy...
+		$this->db->insert('products', $product);
+	}
+
+	public function delete( $product )
+	{
+		// wskazujemy gdzie bedziemy dzialali
+		$this->db->where('id', $product['id']);
+
+		// podajemy nazwe tabeli w której usuwamy...
+		$this->db->delete('products', $product);
+	}
+
 }
