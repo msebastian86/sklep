@@ -25,7 +25,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="user in users | filter : search">
-                    <td>{{ user.id }}</td>
+                    <td>{{ $index + 1 }}</td> <!-- //tutaj dla samego widoku jest index zamiast id zeby byly numerki od 1 w góre a nie id czyli przyznawane po kolei=balagan po jakims czasie -->
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.role}}</td>

@@ -3,6 +3,8 @@
 <form ng-submit="createUser()">
     <div class="row">
         <div class="col-md-12">
+
+        {{errors.name}}
             
             <div class="form-group">
                 <label>imie</label>
@@ -27,14 +29,17 @@
             <div class="form-group">
                 <label>rola:</label>
                 <select class="form-control" ng-model="user.role">
-                    <option value="user">uuser</option>
+                    <option value="user">user</option>
                     <option value="admin">admin kozak</option>
                 </select>
             </div>
 
             <hr/>
-            <button type="submit" class="btn btn-primary">Dodaj chłopa</button>
+
             <a href="#/admin/users" class="btn btn-primary">Wróć, olej zmiany</a>
+
+            <button type="submit" class="btn btn-primary btn-lg" ng-if="!success">Dodaj chłopa</button>
+            <button type="button" class="btn btn-success btn-lg" ng-if="success">Chłop dodany!</button>
 
         </div>
     </div>

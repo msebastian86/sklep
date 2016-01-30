@@ -51,20 +51,6 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
 				console.log('problem z popraniem danych bazy sql :/');
 		});
 
-		function getImages(){
-			
-			$http.get('api/admin/images/get/' + productId)
-				.success( function(data){
-					$scope.images = data;
-				})
-				.error( function(){
-					console.log('problem z popraniem danych bazy sql :/');
-			});
-
-		}
-
-		getImages();
-
 		$scope.saveChanges = function ( product ) {
 
 			$http.post('api/admin/products/update/' , {
@@ -87,6 +73,19 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
 			// console.log( product );
 			// console.log( productId );
 		};
+
+		function getImages(){
+			
+			$http.get('api/admin/images/get/' + productId)
+				.success( function(data){
+					$scope.images = data;
+				})
+				.error( function(){
+					console.log('problem z popraniem danych bazy sql :/');
+			});
+		}
+
+		getImages();
 
 		var uploader = $scope.uploader = new FileUploader({
             url: 'api/admin/images/upload/' + productId //sciezka do api obslugujacego upload
@@ -185,40 +184,95 @@ controllersAdmin.controller('users', ['$scope', '$http', function($scope, $http)
 		$scope.users.splice( $index , 1 );
 		// [który index, ile elementów, dodanie czegoś ]
 
+		$http.post('api/admin/users/delete/' , {
+			user : user
+		}).error( function(){
+			console.log('Błąd komunikacji z API');
+		});
+
 		//console.log( users );
 	};
 
 }]);
 
-controllersAdmin.controller('userEdit', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 
 
-		$http.post('model/users.json')
+controllersAdmin.controller('userEdit', ['$scope', '$http', '$routeParams', '$timeout', function($scope, $http, $routeParams, $timeout){
+
+		var userId = $routeParams.id;
+		$scope.id = userId;
+
+		$http.get('api/admin/users/get/' + userId)
 
 			.success( function(data){
-				var users = data;
-				$scope.user = users[id];
+				$scope.user = data;
+				// console.log(data);
 			})
 			.error( function(){
 				console.log('cos sie zjebał JSON :/');
 		});
 
 		$scope.saveChanges = function ( user ) {
-			console.log( user );
-			console.log( id );
+
+			$http.post('api/admin/users/update/' , {
+
+				user : user
+
+				}).success( function(){
+					$scope.success = true;
+
+					// timeout to serwis angulara, do opóźnien, rejestrowany troche wyżej...
+
+					$timeout(function(){
+						$scope.success = false;	
+					} , 3500 );
+				})
+				.error( function(){
+					console.log('problem z popraniem danych bazy sql :/');
+			});
+
+
+			// console.log( user );
+			// console.log( id );
 		};
+
 
 	// console.log($scope.users[2].opis);
 
 }]);
 
 
-controllersAdmin.controller('userCreate', ['$scope', '$http', function($scope, $http){
+controllersAdmin.controller('userCreate', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
 
+		///zeby defaultowo zaznaczony byl user
+		$scope.user = {};
+		$scope.user.role = 'user';
 
-		$scope.createUser = function () {
-			// TODO połączyć z API
-			console.log( $scope.user );
+		$scope.createUser = function ( user ) {
+			$http.post('api/admin/users/create/' , {
+
+				// co przekazujemy i pod jaka postacia
+				user : user,
+				name : user.name,
+				email : user.email,
+				password : user.password,
+				passconf : user.passconf
+
+				// pobieramy errors z formularza modelu users.php
+				}).success( function( errors ){
+
+					$scope.errors = errors;
+
+					$scope.success = true;
+					$timeout(function(){
+						$scope.success = false;
+						// żeby się wyczyscily pola
+						$scope.user = {};
+					} , 3500 );
+				})
+				.error( function(){
+					console.log('Błąd komunikacji z API');
+			});
 		};
 
 	// console.log($scope.products[2].opis);
