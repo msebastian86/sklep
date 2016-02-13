@@ -13,8 +13,8 @@
 				"qty":3
 			},
 			{
-				"name": "buraki",
-				"description": "Lorem adipisicing elit.",
+				"name": "frytki",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
 				"price": "9.31",
 				"weight": "3.74",
 				"qty":2
@@ -37,7 +37,7 @@
 				"qty":2
 			},
 			{
-				"name": "getry",
+				"name": "długopis",
 				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi numquam aut, non?",
 				"price": "12.12",
 				"weight": "0.36",
@@ -61,7 +61,7 @@
 				"qty":31
 			},
 			{
-				"name": "kalafior",
+				"name": "długopis",
 				"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora?",
 				"price": "0.89",
 				"weight": "1.74",

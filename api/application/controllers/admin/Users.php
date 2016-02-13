@@ -35,6 +35,9 @@ class Users extends CI_Controller {
 		if ( $this->form_validation->run() )
 		{
 			$user = $this->input->post( 'user' );
+			
+			// szyfrowanie hasła zeby w bazie nie bylo widoczne prawdziwe, drugi parametr to dowatkowy klucz zeby mocniej szyfrowalo, kod mozesz wpisac w configu codeignitera (encryption_key) a potem odnosimy sie do tego (mozna wpisac bezposredniu tutaj bez codeignitera)
+			$user['password'] = crypt( $user['password'] , config_item( 'encryption_key' ) );
 			$this->Users_model->update( $user );
 		}
 		else
@@ -61,6 +64,10 @@ class Users extends CI_Controller {
 		if ( $this->form_validation->run() )
 		{
 			$user = $this->input->post( 'user' );
+
+			// szyfrowanie hasła zeby w bazie nie bylo widoczne prawdziwe, drugi parametr to dowatkowy klucz zeby mocniej szyfrowalo, kod mozesz wpisac w configu codeignitera (encryption_key) a potem odnosimy sie do tego (mozna wpisac bezposredniu tutaj bez codeignitera)
+			$user['password'] = crypt( $user['password'] , config_item( 'encryption_key' ) );
+
 			$this->Users_model->create( $user );
 		}
 		else

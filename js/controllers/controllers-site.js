@@ -9,7 +9,7 @@ controllersSite.controller('siteProducts', ['$scope', '$http', 'cartSrv', '$time
 				$scope.products = data;
 			})
 			.error( function(){
-				console.log('blad laczenia z api :/');
+				console.log('Blad laczenia z api :/');
 		});
 
 		$scope.addToCart = function ( product ) {
@@ -59,7 +59,7 @@ controllersSite.controller('siteProduct', ['$scope', '$http', '$routeParams', 'c
 				$scope.checkCart($scope.product);
 			})
 			.error( function(){
-				console.log('blad laczenia z api :/');
+				console.log('Blad laczenia z api :/');
 		});	
 
 		$scope.addToCart = function ( product ) {
@@ -104,7 +104,7 @@ controllersSite.controller('siteOrders', ['$scope', '$http', function($scope, $h
 			$scope.orders = data;
 		})
 		.error( function(){
-			console.log('cos sie zjebał JSON :/');
+			console.log('Problem pobrania z JSONa :/');
 	});
 
 }]);
@@ -178,7 +178,7 @@ controllersAdmin.controller('orders', ['$scope', '$http', function($scope, $http
 			$scope.orders = data;
 		})
 		.error( function(){
-			console.log('cos sie zjebał JSON :/');
+			console.log('Problem pobrania z JSONa :/');
 	});
 
 }]);
@@ -199,13 +199,43 @@ controllersAdmin.controller('login', ['$scope', '$http', function($scope, $http)
 }]);
 
 controllersAdmin.controller('register', ['$scope', '$http', function($scope, $http){
+		
+	$scope.user = {};
 
-	// TODO: pobrać dane z form i przesłac do bazy - uwierztelnainie 
-	$scope.formSubmit = function (argument) {
-		$scope.errors = {};
-		$scope.errors.name = 'przykładowy błąd';
-		$scope.submit = true;
-		console.log( $scope.input );
+	$scope.formSubmit = function (user) {
+
+		$http.post('api/site/user/create/' , {
+
+			// co przekazujemy i pod jaka postacia
+			user : user,
+			name : user.name,
+			email : user.email,
+			password : user.password,
+			passconf : user.passconf
+
+			// pobieramy errors z formularza modelu users.php
+			}).success( function( errors ){
+
+				$scope.submit = true;
+
+				// po wysłaniu wyczysci pola
+				$scope.user = {};
+				
+				if ( errors )
+				{
+					$scope.errors = errors;
+				}
+				else
+				{
+					// czysci bledy zeby nie wisialy ciagle
+					$scope.errors = {};
+					$scope.success = true;
+				}
+
+			}).error( function(){
+				console.log('Błąd komunikacji z API');
+		});
+
 	};
 
 }]);

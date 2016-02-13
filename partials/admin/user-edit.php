@@ -38,7 +38,7 @@
             <hr/>
 
             <a href="#/admin/users" class="btn btn-warning">Wróć, olej zmiany</a>
-            <button type="submit" class="btn btn-primary btn-lg" ng-if="!success">Zapisz pan zmiany</button>
+            <button type="submit" class="btn btn-primary btn-lg" ng-if="!success">Zapisz zmiany</button>
             <button type="button" class="btn btn-success btn-lg" ng-if="success">Zmiany zapisane!</button>
 
         </div>

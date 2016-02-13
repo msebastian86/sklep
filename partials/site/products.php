@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
         <div class="row">
             <div class="col-sm-12">
                 <input type="text" placeholder="sercz" ng-model="search">
@@ -36,6 +36,6 @@
         </div>
     </div>
     <div class="col-sm-6">
-        <img src="img/zukwypas.png" alt="żuk :P" class="img-responsive">
+        <!-- <img src="img/zukwypas.png" alt="żuk :P" class="img-responsive"> -->
     </div>
 </div>

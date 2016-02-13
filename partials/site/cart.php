@@ -24,31 +24,31 @@
 					    		<th>Usuń</th>
 					    	</tr>
 					    </thead>	
-<tbody>
-	<tr ng-repeat="item in cart">
-		<td>{{item.name}}</td>
-		<td>{{item.weight}}</td>
-		<td>
-			<div class="form-group" ng-class="{ 'has-error' : myForm.input{{$index}}.$error.required || myForm.input{{$index}}.$error.number || myForm.input{{$index}}.$error.max || myForm.input{{$index}}.$error.min }">
-				<input class="form-control" name="input{{$index}}" type="number" ng-model="item.qty" min="1" max="100" style="width:65px;" required>
-			
-				<span class="text-danger" ng-show="myForm.input{{$index}}.$error.required">Podaj ilość</span>
-				<span class="text-danger" ng-show="myForm.input{{$index}}.$error.number">Tylko cyfry</span>
-				<span class="text-danger" ng-show="myForm.input{{$index}}.$error.max">Nie mamy tyle :P</span>
-				<span class="text-danger" ng-show="myForm.input{{$index}}.$error.min"><span class="glyphicon glyphicon-fire"></span> Rly?</span>
+						<tbody>
+							<tr ng-repeat="item in cart">
+								<td>{{item.name}}</td>
+								<td>{{item.weight}}</td>
+								<td>
+									<div class="form-group" ng-class="{ 'has-error' : myForm.input{{$index}}.$error.required || myForm.input{{$index}}.$error.number || myForm.input{{$index}}.$error.max || myForm.input{{$index}}.$error.min }">
+										<input class="form-control" name="input{{$index}}" type="number" ng-model="item.qty" min="1" max="100" style="width:65px;" required>
+									
+										<span class="text-danger" ng-show="myForm.input{{$index}}.$error.required">Podaj ilość</span>
+										<span class="text-danger" ng-show="myForm.input{{$index}}.$error.number">Tylko cyfry</span>
+										<span class="text-danger" ng-show="myForm.input{{$index}}.$error.max">Nie mamy tyle :P</span>
+										<span class="text-danger" ng-show="myForm.input{{$index}}.$error.min"><span class="glyphicon glyphicon-fire"></span> Rly?</span>
 
-			</div>
-		</td>
-		<td>{{item.price | number:2}} zł</td>
-		<td>{{item.qty * item.price | number:2}}</td>
-		<td><button ng-click="removeItem( $index )" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span></button></td>
-	</tr>
-	<tr style="border-top: 2px solid black;">
-		<td colspan="4"></td>
-		<td>Łącznie:</td>
-		<td><strong class="label label-info">{{ total() | number:2 }} zł</strong></td>
-	</tr>
-</tbody>
+									</div>
+								</td>
+								<td>{{item.price | number:2}} zł</td>
+								<td>{{item.qty * item.price | number:2}}</td>
+								<td><button ng-click="removeItem( $index )" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span></button></td>
+							</tr>
+							<tr style="border-top: 2px solid black;">
+								<td colspan="4"></td>
+								<td>Łącznie:</td>
+								<td><strong class="label label-info">{{ total() | number:2 }} zł</strong></td>
+							</tr>
+						</tbody>
 	                </table>
 
 

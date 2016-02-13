@@ -9,7 +9,7 @@ controllersAdmin.controller('products', ['$scope', '$http', function($scope, $ht
 				$scope.products = data;
 			})
 			.error( function(){
-				console.log('lipa z połączeniem do sql :/');
+				console.log('Problem z połączeniem do sql :/');
 		});
 
 		$scope.delete = function ( product, $index ) {
@@ -17,8 +17,8 @@ controllersAdmin.controller('products', ['$scope', '$http', function($scope, $ht
 			if ( !confirm ( 'czy napewno usunac produkt?' ) )
 				return false;
 			
-			$scope.products.splice( $index , 1 );
 			// [który index, ile elementów, dodanie czegoś ]
+			$scope.products.splice( $index , 1 );
 			//console.log( $scope.products[$index] );
 
 
@@ -119,7 +119,7 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
         			
         		})
         		.error( function(){
-        			console.log('cos sie zjebał JSON :/');
+        			console.log('Problem pobierania z JSONa :/');
         	});
 
 
@@ -169,7 +169,7 @@ controllersAdmin.controller('users', ['$scope', '$http', function($scope, $http)
 			$scope.users = data;
 		})
 		.error( function(){
-			console.log('lipa z połączeniem do sql :/');
+			console.log('Problem z połączeniem do sql :/');
 	});
 
 
@@ -287,6 +287,9 @@ controllersAdmin.controller('userCreate', ['$scope', '$http', '$timeout', functi
 					}
 					else
 					{
+						// czysci bledy zeby nie wisialy ciagle
+						$scope.errors = {};
+						
 						$scope.success = true;
 						$timeout(function(){
 							$scope.success = false;
@@ -300,7 +303,6 @@ controllersAdmin.controller('userCreate', ['$scope', '$http', '$timeout', functi
 			});
 		};
 
-
 	// console.log($scope.products[2].opis);
 
 }]);
@@ -313,11 +315,17 @@ controllersAdmin.controller('orders', ['$scope', '$http', function($scope, $http
 			$scope.orders = data;
 		})
 		.error( function(){
-			console.log('cos sie zjebał JSON :/');
+			console.log('Problem pobierania z JSONa :/');
 	});
+	
 
 	$scope.delete = function ( user, $index ) {
-		$scope.orders.splice( $index , 1 )
+		if ( !confirm( 'Czy na pewno chcesz usunąć to zdjęcie' ) )
+			return false;
+
+		$scope.orders.splice( $index , 1 );
+
+		// TODO: przesłać dane przez API
 	};
 
 	$scope.changeStatus = function ( order ) {

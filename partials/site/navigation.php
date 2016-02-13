@@ -12,7 +12,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" ng-class="{active : isActive( '/home' ) }" href="#/home">stefanShop</a>
+              <a class="navbar-brand" ng-class="{active : isActive( '/home' ) }" href="#/home">Shop</a>
             </div>
           
             <!-- Collect the nav links, forms, and other content for toggling -->
