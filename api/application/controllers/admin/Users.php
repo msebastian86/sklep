@@ -26,10 +26,25 @@ class Users extends CI_Controller {
 	public function update()
 	{	
 
-		$user = $this->input->post('user');
+		$this->form_validation->set_error_delimiters( '' , '' );
+		$this->form_validation->set_rules( 'name' , 'Imię' , 'required|min_length[3]' );
+		$this->form_validation->set_rules( 'email' , 'Email' , 'required|valid_email|callback_unique_email' );
+		$this->form_validation->set_rules( 'password' , 'Nowe hasło' , 'matches[passconf]' );
+		$this->form_validation->set_rules( 'passconf' , 'Powtórz nowe hasło' , 'matches[password]' );
 
-		// odniesienie do modelu produktów i ścieżka gdzie on sie znajduje nastepnie przekazujemy $user które pozniej odbieramy w tym modelu
-		$output = $this->Users_model->update( $user );
+		if ( $this->form_validation->run() )
+		{
+			$user = $this->input->post( 'user' );
+			$this->Users_model->update( $user );
+		}
+		else
+		{
+			$errors['name'] = form_error( 'name' );
+			$errors['email'] = form_error( 'email' );
+			$errors['password'] = form_error( 'password' );
+			$errors['passconf'] = form_error( 'passconf' );
+			echo json_encode( $errors );
+		}
 		
 	}
 
@@ -37,18 +52,24 @@ class Users extends CI_Controller {
 	public function create()
 	{	
 
-		// imie to nazwa przesylana przez angulara i przypisujemy nazwe imie potem przypisujemy typ walidacji...
-		$this->form_validation->set_rules( 'name', 'imie', 'required');
+		$this->form_validation->set_error_delimiters( '' , '' );
+		$this->form_validation->set_rules( 'name' , 'Imię' , 'required|min_length[3]' );
+		$this->form_validation->set_rules( 'email' , 'Email' , 'required|valid_email|is_unique[users.email]' );
+		$this->form_validation->set_rules( 'password' , 'Hasło' , 'required|matches[passconf]' );
+		$this->form_validation->set_rules( 'passconf' , 'Powtórz hasło' , 'required|matches[password]' );
 
-		if ($this->form_validation->run() )
+		if ( $this->form_validation->run() )
 		{
-			$user = $this->input->post('user');
-			$this->Users_model->create( $user );	
-
-		} else {
-
-			$output['name'] = form_error('name');
-			echo json_encode( $output );
+			$user = $this->input->post( 'user' );
+			$this->Users_model->create( $user );
+		}
+		else
+		{
+			$errors['name'] = form_error( 'name' );
+			$errors['email'] = form_error( 'email' );
+			$errors['password'] = form_error( 'password' );
+			$errors['passconf'] = form_error( 'passconf' );
+			echo json_encode( $errors );
 		}
 
 	}
@@ -58,6 +79,20 @@ class Users extends CI_Controller {
 
 		$user = $this->input->post('user');
 		$output = $this->Users_model->delete( $user );		
+	}
+
+	function unique_email()
+	{
+		$id = $this->input->post( 'id' );
+		$email = $this->input->post( 'email' );
+
+		if ( $this->Users_model->get_unique( $id , $email ) )
+		{
+			$this->form_validation->set_message( 'unique_email' , 'Inny użytkownik ma taki adres e-mail' );
+			return false;
+		}
+
+		return true;
 	}
 
 }

@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
 var controllersAdmin = angular.module('controllersAdmin', [ 'angularFileUpload' , 'myDirectives' ]);
 
@@ -209,23 +209,40 @@ controllersAdmin.controller('userEdit', ['$scope', '$http', '$routeParams', '$ti
 				// console.log(data);
 			})
 			.error( function(){
-				console.log('cos sie zjebał JSON :/');
+				console.log('Błąd komunikacji z api :/');
 		});
 
 		$scope.saveChanges = function ( user ) {
 
 			$http.post('api/admin/users/update/' , {
 
-				user : user
+				user : user,
+				id : userId,
+				name : user.name,
+				email : user.email,
+				password : user.password,
+				passconf : user.passconf
 
-				}).success( function(){
+				}).success( function( errors ){
+
 					$scope.success = true;
 
-					// timeout to serwis angulara, do opóźnien, rejestrowany troche wyżej...
+					if ( errors )
+					{
+						$scope.errors = errors;
+					}
+					else
+					{
+						$scope.success = true;
 
-					$timeout(function(){
-						$scope.success = false;	
-					} , 3500 );
+						// timeout to serwis angulara, do opóźnien, rejestrowany troche wyżej...
+
+						$timeout(function(){
+							$scope.success = false;
+							$scope.product = {};
+						} , 3000 );
+					}					
+
 				})
 				.error( function(){
 					console.log('problem z popraniem danych bazy sql :/');
@@ -247,6 +264,7 @@ controllersAdmin.controller('userCreate', ['$scope', '$http', '$timeout', functi
 		///zeby defaultowo zaznaczony byl user
 		$scope.user = {};
 		$scope.user.role = 'user';
+		
 
 		$scope.createUser = function ( user ) {
 			$http.post('api/admin/users/create/' , {
@@ -261,19 +279,27 @@ controllersAdmin.controller('userCreate', ['$scope', '$http', '$timeout', functi
 				// pobieramy errors z formularza modelu users.php
 				}).success( function( errors ){
 
-					$scope.errors = errors;
+					$scope.submit = true;
+					
+					if ( errors )
+					{
+						$scope.errors = errors;
+					}
+					else
+					{
+						$scope.success = true;
+						$timeout(function(){
+							$scope.success = false;
+							// żeby się wyczyscily pola
+							$scope.user = {};
+						} , 3000 );
+					}
 
-					$scope.success = true;
-					$timeout(function(){
-						$scope.success = false;
-						// żeby się wyczyscily pola
-						$scope.user = {};
-					} , 3500 );
-				})
-				.error( function(){
+				}).error( function(){
 					console.log('Błąd komunikacji z API');
 			});
 		};
+
 
 	// console.log($scope.products[2].opis);
 

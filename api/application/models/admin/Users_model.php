@@ -1,6 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class Users_model extends CI_Model {
 
 	public function get( $id = false )
@@ -27,7 +26,7 @@ class Users_model extends CI_Model {
 	public function update( $user )
 	{
 
-		echo "oook";
+		echo "update usera";
 		// updatuje produkt o przekazanym id....
 		$this->db->where('id', $user['id']);
 
@@ -37,12 +36,9 @@ class Users_model extends CI_Model {
 
 	public function create( $user )
 	{
-		
-		echo "oook";
-		// podajemy nazwe tabeli w której updatujemy...
-		$this->db->insert('users', $user);
+		$this->db->insert( 'users' , $user );
 	}
-
+	
 	public function delete( $user )
 	{
 		// wskazujemy gdzie bedziemy dzialali
@@ -50,6 +46,15 @@ class Users_model extends CI_Model {
 
 		// podajemy nazwe tabeli w której usuwamy...
 		$this->db->delete('users', $user);
+	}
+
+	public function get_unique( $id , $email )
+	{
+		$this->db->where( 'email' , $email );
+		!$id || $this->db->where( 'id !=' , $id );
+		$q = $this->db->get( 'users' );
+
+		return $q->row();
 	}
 
 }

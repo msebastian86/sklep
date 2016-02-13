@@ -29,8 +29,8 @@
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.role}}</td>
-                    <td><a href="#/admin/user/edit/{{user.id}}" class="btn btn-default" style="width:100%;"><span class="glyphicon glyphicon-pencil"></span> EDIT</a></td>
-                    <td><a ng-click="delete( user, user.id )" class="btn btn-danger" style="width:100%;"><span class="glyphicon glyphicon-trash"></span> DELETE</a></td>
+                    <td><a href="#/admin/user/edit/{{user.id}}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                    <td><button ng-click="delete( user , $index )" class="btn btn-danger btn-sm pull-right"><span class="glyphicon glyphicon-trash"></span></button></td>
                 </tr>
             </tbody>
         </table>
