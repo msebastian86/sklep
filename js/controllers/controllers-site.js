@@ -2,19 +2,48 @@
 
 var controllersSite = angular.module('controllersSite', []);
 
-controllersSite.controller('siteProducts', ['$scope', '$http', 'cartSrv', function($scope, $http, cartSrv){
+controllersSite.controller('siteProducts', ['$scope', '$http', 'cartSrv', '$timeout', function($scope, $http, cartSrv, $timeout){
 
-		$http.get('api/admin/products/get')
+		$http.get('api/site/products/get')
 			.success( function(data){
 				$scope.products = data;
 			})
 			.error( function(){
-				console.log('lipa z połączeniem do sql :/');
+				console.log('blad laczenia z api :/');
 		});
 
 		$scope.addToCart = function ( product ) {
+
 			cartSrv.add( product );
+
+			if ( cartSrv.show().length )
+			{
+				angular.forEach(cartSrv.show() , function( item ){
+					if( item.id == product .id)
+					{
+						product.qty = item.qty;
+						$timeout(function(){
+							product.qty = '';
+						} , 1000 );
+					}
+				});
+			}
+
 		};
+
+		$scope.checkCart = function (product) {
+			
+			if ( cartSrv.show().length )
+			{
+				angular.forEach(cartSrv.show() , function( item ){
+					if( item.id == product .id)
+					{
+						product.qty = item.qty;
+					}
+				});
+			}
+		}
+
 
 	// console.log($scope.products[2].opis);
 
@@ -23,19 +52,45 @@ controllersSite.controller('siteProducts', ['$scope', '$http', 'cartSrv', functi
 controllersSite.controller('siteProduct', ['$scope', '$http', '$routeParams', 'cartSrv', function($scope, $http, $routeParams, cartSrv){
 
 		var productId = $routeParams.id;
-		$scope.id = productId;
 
-		$http.get('api/admin/products/get/' + productId)
+		$http.post('api/site/products/get/' + productId)
 			.success( function(data){
 				$scope.product = data;
+				$scope.checkCart($scope.product);
 			})
 			.error( function(){
-				console.log('lipa z połączeniem do sql :/');
+				console.log('blad laczenia z api :/');
 		});	
 
 		$scope.addToCart = function ( product ) {
 			cartSrv.add( product );
 		};
+
+		$scope.checkCart = function (product) {
+			
+			if ( cartSrv.show().length )
+			{
+				angular.forEach(cartSrv.show() , function( item ){
+					if( item.id == product .id)
+					{
+						product.qty = item.qty;
+					}
+				});
+			}
+		}
+
+		function getImages(){
+			
+			$http.get('api/site/products/getImages/' + productId)
+				.success( function(data){
+					$scope.images = data;
+				})
+				.error( function(){
+					console.log('problem z polaczeniem api :/');
+			});
+		}
+
+		getImages();
 
 	// console.log($scope.products[2].opis);
 
