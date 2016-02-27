@@ -56,4 +56,34 @@ class User extends CI_Controller {
 		}
 	}
 
+	public function login()
+	{
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
+		$password = crypt( $password, config_item( 'encryption_key' ) );
+
+		$login = $this->User_model->login($email, $password);
+
+		// funkcje error itd sa w modelu...
+		if (!$login) {
+
+			$output['error'] = 'Błędne hasło lub email';
+
+		} else {
+
+			$token = $this->jwt->encode(array(
+				// przekazujemy dane do rozszyfrowania
+				'userId' => $login->id,
+				'name' => $login->name,
+				'email' => $login->email,
+				'role' => $login->role
+				), config_item( 'encryption_key' ) );
+			
+			$output['token'] = $token;
+
+		}
+		
+		echo json_encode($output);
+	}
+
 }

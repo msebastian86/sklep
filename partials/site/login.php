@@ -1,4 +1,4 @@
-<form action="" ng-submit="formSubmit()">
+<form action="" ng-submit="formSubmit( user )">
 
 	<div class="row">
 		<div class="col-md-12">
@@ -12,21 +12,21 @@
 				</div>
 				<div class="panel-body">
 
-					<div class="alert alert-danger text-center" ng-if="errors.login">
-						{{errors.login}}
+					<div class="alert alert-danger text-center" ng-if="error">
+						{{error}}
 					</div>
 					
 					<div class="row">
 						<div class="col-sm-6 col-sm-offset-3">
 
-							<div class="form-group" ng-class="{ 'has-error' : errors.login }">
+							<div class="form-group" ng-class="{ 'has-error' : error }">
 								<label for="">Email</label>
-								<input type="text" class="form-control" ng-model="input.email" placeholder="Twój adres email">
+								<input type="text" class="form-control" ng-model="user.email" placeholder="Twój adres email">
 							</div>
 
-							<div class="form-group" ng-class="{ 'has-error' : errors.login }">
+							<div class="form-group" ng-class="{ 'has-error' : error }">
 								<label for="">Masło</label>
-								<input type="password" class="form-control" ng-model="input.password" placeholder="Twoje hasło">
+								<input type="password" class="form-control" ng-model="user.password" placeholder="Twoje hasło">
 							</div>
 
 							<button class="btn btn-primary btn-block">Zaloguj się</button>

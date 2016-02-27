@@ -28,7 +28,4 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-6">
-        <!-- <img src="img/zukwypas.png" alt="żuk :P" class="img-responsive"> -->
-    </div>
 </div>

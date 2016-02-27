@@ -184,17 +184,38 @@ controllersAdmin.controller('orders', ['$scope', '$http', function($scope, $http
 }]);
 
 
-controllersAdmin.controller('login', ['$scope', '$http', function($scope, $http){
+controllersAdmin.controller('login', ['$scope', '$http', 'store', function($scope, $http, store){
 
 	// TODO: pobrać dane z form i przesłac do bazy - uwierztelnainie
 
-	$scope.input = {};
+	$scope.user = {};
 
-	$scope.formSubmit = function (argument) {
-		$scope.errors = {};
-		$scope.errors.login = 'Błędne hasło / email';
-		console.log( $scope.input );
+	$scope.formSubmit = function ( user ) {
+
+		$http.post('api/site/user/login/' , {
+
+			// co przekazujemy i pod jaka postacia
+			email : user.email,
+			password : user.password
+
+			// pobieramy errors z formularza modelu users.php
+			}).success( function( data ){
+
+
+				$scope.submit = true;
+				$scope.error = data.error;
+				
+				if ( !data.errors )
+				{
+					store.set('token', data.token);
+				}
+
+			}).error( function(){
+				console.log('Błąd komunikacji z API');
+		});
 	};
+
+	console.log(store.get('token'));
 
 }]);
 

@@ -36,9 +36,3 @@
         </table>
     </div>
 </div>
-
-<div class="row" style="background:white;">
-    <div class="col-sm-12">
-        <img src="img/kartofle.png" alt="karfotle" class="img-responsive center-block">
-    </div>
-</div>
