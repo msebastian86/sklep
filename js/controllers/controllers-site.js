@@ -44,7 +44,6 @@ controllersSite.controller('siteProducts', ['$scope', '$http', 'cartSrv', '$time
 			}
 		}
 
-
 	// console.log($scope.products[2].opis);
 
 }]);
@@ -184,9 +183,10 @@ controllersAdmin.controller('orders', ['$scope', '$http', function($scope, $http
 }]);
 
 
-controllersAdmin.controller('login', ['$scope', '$http', 'store', function($scope, $http, store){
+controllersAdmin.controller('login', ['$scope', '$http', 'store', 'checkToken','$location', function($scope, $http, store, checkToken, $location){
 
-	// TODO: pobrać dane z form i przesłac do bazy - uwierztelnainie
+	if ( checkToken.loggedIn() )
+		$location.path('/products');
 
 	$scope.user = {};
 
@@ -201,13 +201,13 @@ controllersAdmin.controller('login', ['$scope', '$http', 'store', function($scop
 			// pobieramy errors z formularza modelu users.php
 			}).success( function( data ){
 
-
 				$scope.submit = true;
 				$scope.error = data.error;
 				
-				if ( !data.errors )
+				if ( !data.error )
 				{
 					store.set('token', data.token);
+					location.reload();
 				}
 
 			}).error( function(){
@@ -215,7 +215,7 @@ controllersAdmin.controller('login', ['$scope', '$http', 'store', function($scop
 		});
 	};
 
-	console.log(store.get('token'));
+	//console.log( checkToken.payload() );
 
 }]);
 

@@ -25,7 +25,7 @@
               </ul>
           
               <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{active : isActive( '/login' ) }"><a href="#/logout">LogOut</a></li>
+                <li ng-class="{active : isActive( '/login' ) }" ng-click="logout()"><a href="">LogOut</a></li>
               </ul>
     
             </div><!-- /.navbar-collapse -->

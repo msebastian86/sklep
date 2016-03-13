@@ -66,9 +66,7 @@ class User extends CI_Controller {
 
 		// funkcje error itd sa w modelu...
 		if (!$login) {
-
 			$output['error'] = 'Błędne hasło lub email';
-
 		} else {
 
 			$token = $this->jwt->encode(array(

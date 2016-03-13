@@ -27,9 +27,6 @@ controllersAdmin.controller('products', ['$scope', '$http', function($scope, $ht
 			}).error( function(){
 				console.log('Błąd komunikacji z API');
 			});
-
-
-
 		};
 
 	// console.log($scope.products[2].opis);
@@ -163,6 +160,9 @@ controllersAdmin.controller('productCreate', ['$scope', '$http', '$timeout',  fu
 
 
 controllersAdmin.controller('users', ['$scope', '$http', function($scope, $http){
+
+
+
 
 	$http.get('api/admin/users/get')
 		.success( function(data){

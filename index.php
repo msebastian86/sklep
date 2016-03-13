@@ -20,6 +20,7 @@
     <script src="bower_components/a0-angular-storage/dist/angular-storage.min.js"></script>
     <script src="https://code.angularjs.org/1.4.7/angular-route.min.js"></script>
     <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+    <script src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
     <script src="js/application.js"></script>
     <script src="js/services.js"></script>
     <script src="js/directives.js"></script>

@@ -12,6 +12,7 @@
   ],
   "dependencies": {
     "modernizr": "2.8.2",
+    "angular-jwt":"",
     "bootstrap": "",
     "angular-file-upload": "",
     "angularjs": "",
