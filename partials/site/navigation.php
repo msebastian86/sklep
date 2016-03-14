@@ -28,7 +28,7 @@
                 <li ng-class="{active : isActive( '/orders' ) }"><a href="#/orders">Orders</a></li>
                 <li ng-class="{active : isActive( '/login' ) }" ng-if="!loggedIn"><a href="#/login">LogIn</a></li>
                 <li ng-class="{active : isActive( '/logout' ) }" ng-if="loggedIn"><a href="" ng-click="logout()">LogOut</a></li>
-                <li ng-class="{active : isActive( '/register' ) }"><a href="#/register" ng-if="loggedIn">Register</a></li>
+                <li ng-class="{active : isActive( '/register' ) }"><a href="#/register" ng-if="!loggedIn">Register</a></li>
                 <li ng-class="{active : isActive( '/admin' ) }" ng-if="isAdmin"><a href="#/admin/users">Admin</a></li>
               </ul>
     

@@ -27,11 +27,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <button ng-click="addToCart( product ); checkCart( product )" class="btn btn-primary pull-right" ng-if="!product.qty">Dodaj do koszyka</button>
-                        <button ng-click="addToCart( product ); checkCart( product )" class="btn btn-primary pull-right"  ng-if="product.qty">W koszyku: {{product.qty}}</button>
+                        <button ng-click="addToCart( product ); checkCart( product )" class="btn btn-primary pull-right"  ng-if="product.qty">W koszyku: <strong style="color:red;">{{product.qty}}</strong></button>
                     </div>
                 </div>
-
-                {{product.qty}}
             </div>
         </div>
     </div>

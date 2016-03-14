@@ -1,17 +1,17 @@
-﻿'use strict';
+﻿/* jshint node: true */
 
 var myServices = angular.module('myServices', [] );
 
 // factory są dostepne w dowolnym kontrolerze
 
-myServices.factory( 'cartSrv', [ 'store' , function( store ) {
+myServices.factory( 'cartSrv' , [ 'store' , function( store ) {
 
 	if ( store.get( 'cart' ) )
 		var cart = store.get( 'cart' );
 	else
 		var cart = [];
 
-	cart.show = function(){
+	cart.show = function () {
 		return cart;
 	};
 
@@ -24,15 +24,15 @@ myServices.factory( 'cartSrv', [ 'store' , function( store ) {
 		}
 
 		var addNew = true;
+		angular.forEach( cart , function ( value , key ) {
 
-		angular.forEach( cart, function ( value , key ){
+			// TODO: zmienić name na id gdy będzie kontakt z bazą
 
 			if ( value.name == product.name )
 			{
 				addNew = false;
 				cart[key].qty++;
 			}
-
 		});
 
 		if ( addNew )
@@ -43,27 +43,25 @@ myServices.factory( 'cartSrv', [ 'store' , function( store ) {
 
 		store.set( 'cart' , cart.show() );
 
-		//console.log( cart );
 	};
 
 	cart.empty = function () {
-		store.remove('cart');
+		store.remove( 'cart' );
 		cart.length = 0;
 	};
 
 	//po usunieciu itemu z koszyka nadpisujemy nowa wersje koszyka (nie da się usunac w local storage)
 
 	cart.update = function ( newCart ) {
-		store.set( 'cart', newCart ); 
+		store.set( 'cart' , newCart );
 	};
 
 	return cart;
-
+	
 }]);
 
 
 myServices.service('checkToken', [ 'store', 'jwtHelper', function( store, jwtHelper ){
-
 
 	var token = store.get('token');
 
@@ -99,6 +97,6 @@ myServices.service('checkToken', [ 'store', 'jwtHelper', function( store, jwtHel
 
 	this.del = function () {
 		store.remove('token');
-	}
+	};
 
 }]);

@@ -30,6 +30,7 @@
 								<td>{{item.weight}}</td>
 								<td>
 									<div class="form-group" ng-class="{ 'has-error' : myForm.input{{$index}}.$error.required || myForm.input{{$index}}.$error.number || myForm.input{{$index}}.$error.max || myForm.input{{$index}}.$error.min }">
+									
 										<input class="form-control" name="input{{$index}}" type="number" ng-model="item.qty" min="1" max="100" style="width:65px;" required>
 									
 										<span class="text-danger" ng-show="myForm.input{{$index}}.$error.required">Podaj ilość</span>

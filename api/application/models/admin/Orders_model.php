@@ -2,12 +2,10 @@
 
 class Orders_model extends CI_Model {
 
-	public function get( $userId )
+	public function get()
 
 	{
 
-		// szuka pole kolumny
-		$this->db->where( 'userId', $userId );
 		$q = $this->db->get( 'orders' );
 
 		// row to jeden wiersz result wszystkie
@@ -20,6 +18,19 @@ class Orders_model extends CI_Model {
 	public function create( $data )
 	{
 		$this->db->insert( 'orders' , $data );
+	}
+
+	public function update( $id, $data )
+	{
+		$this->db->where('id', $id);
+		$this->db->update('orders', $data);
+	
+	}
+
+	public function delete( $id )
+	{
+		$this->db->where('id', $id);
+		$this->db->delete('orders');
 	}
 
 }

@@ -61,7 +61,6 @@ controllersNavigation.controller('navigation', ['$scope', '$location', 'cartSrv'
 		};
 
 		//console.log($scope.cart);
-
 		//store.set('test', 'zbychu nadpisał!');
 
 }]);

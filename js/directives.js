@@ -1,4 +1,4 @@
-'use strict';
+/* jshint node: true */
 
 var myDirectives = angular.module('myDirectives', [] );
 

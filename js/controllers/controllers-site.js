@@ -22,21 +22,17 @@ controllersSite.controller('siteProducts', ['$scope', '$http', 'cartSrv', '$time
 					if( item.id == product .id)
 					{
 						product.qty = item.qty;
-						$timeout(function(){
-							product.qty = '';
-						} , 1000 );
+				
 					}
 				});
 			}
-
 		};
 
-		$scope.checkCart = function (product) {
-			
+		$scope.checkCart = function ( product ) {
 			if ( cartSrv.show().length )
 			{
-				angular.forEach(cartSrv.show() , function( item ){
-					if( item.id == product .id)
+				angular.forEach( cartSrv.show() , function( item ){
+					if ( item.id == product.id )
 					{
 						product.qty = item.qty;
 					}
@@ -96,20 +92,30 @@ controllersSite.controller('siteProduct', ['$scope', '$http', '$routeParams', 'c
 }]);
 
 
-controllersSite.controller('siteOrders', ['$scope', '$http', function($scope, $http){
+controllersSite.controller( 'siteOrders' , [ '$scope' , '$http' , 'checkToken' , function( $scope , $http , checkToken ){
 
-	$http.get('model/orders.json')
-		.success( function(data){
-			$scope.orders = data;
-		})
-		.error( function(){
-			console.log('Problem pobrania z JSONa :/');
+	$http.post( 'api/site/orders/get/' , {
+
+		token: checkToken.raw(),
+		payload: checkToken.payload()
+
+	}).success( function( data ){
+
+		$scope.orders = data;
+
+		angular.forEach( $scope.orders , function( order , key ){
+			var parsed = JSON.parse( order.items );
+			$scope.orders[key].items = parsed;
+		});
+
+	}).error( function(){
+		console.log( 'Błąd połączenia z API' );
 	});
 
 }]);
 
 
-controllersSite.controller('cartCtrl', ['$scope', '$http', '$filter', 'cartSrv', 'checkToken', function($scope, $http, $filter, cartSrv, checkToken){
+controllersSite.controller( 'cartCtrl' , [ '$scope' , '$http' , '$filter' , 'cartSrv' , 'checkToken' , function( $scope , $http , $filter , cartSrv , checkToken ){
 
 	$scope.cart = cartSrv.show();
 
@@ -118,63 +124,49 @@ controllersSite.controller('cartCtrl', ['$scope', '$http', '$filter', 'cartSrv',
 	};
 
 	$scope.total = function () {
-
 		var total = 0;
-		angular.forEach( $scope.cart, function (item) {
+		angular.forEach( $scope.cart , function ( item ) {
 			total += item.qty * item.price;
 		});
-
 		total = $filter( 'number' )( total , 2 );
 		return total;
 	};
 
-	$scope.removeItem = function ($index) {
-
-		$scope.cart.splice( $index, 1 );
+	$scope.removeItem = function ( $index ) {
+		$scope.cart.splice( $index , 1 );
 		cartSrv.update( $scope.cart );
 	};
 
-	$scope.setOrder = function ( $event ){
-		console.log('zamowienie:');
-		
+	$scope.setOrder = function ( $event ) {
+
 		$event.preventDefault();
-
-		//TODO: sprawdz czy user zalogowany
-
+	
 		if ( !checkToken.loggedIn() )
 		{
-			$scope.alert = { type : 'warning' , msg : 'Błąd, zaloguj się'};
+			$scope.alert = { type : 'warning' , msg : 'Musisz być zalogowany, żeby złożyć zamówienie.' };
 			return false;
 			// return zeby zatrzymac funkcje -nie zapisywanie smieci w bazie
 		}
 
-		$http.post('api/site/orders/create/' , {
+
+		$http.post( 'api/site/orders/create/' , {
 
 			token: checkToken.raw(),
 			payload: checkToken.payload(),
 			items: $scope.cart,
 			total: $scope.total()
 
-		}).success( function(data){
+		}).success( function( data ){
 
-				cartSrv.empty();
-				$scope.alert = { type : 'success' , msg : 'Trwa składanie zamówienia...' };
-				$( '#paypalForm' ).submit();
-			})
-			.error( function(){
-				console.log('Blad laczenia z api :/');
-		});	
+			cartSrv.empty();
+			$scope.alert = { type : 'success' , msg : 'Zamówienie złożone. Nie odświeżaj strony. Trwa przekierowywanie do płatności...' };
+			$( '#paypalForm' ).submit();
 
+		}).error( function(){
+			console.log( 'Błąd połączenia z API' );
+		});
 
-		// console.log( $scope.total() );
-		// console.log( $scope.cart );
-		
-		//cartSrv.empty();
-
-		$event.preventDefault();
-		//$( '#paypalForm' ).submit();
-
-	}
+	};
 
 	//do sprawdzania zmian w koszyku chociaz u mnie dzialalo bez tego??
 	$scope.$watch( function (){
@@ -182,9 +174,6 @@ controllersSite.controller('cartCtrl', ['$scope', '$http', '$filter', 'cartSrv',
 	});
 
 }]);
-
-
-
 
 
 controllersSite.controller('login', ['$scope', '$http', 'store', 'checkToken','$location', function($scope, $http, store, checkToken, $location){
@@ -215,7 +204,7 @@ controllersSite.controller('login', ['$scope', '$http', 'store', 'checkToken','$
 				}
 
 			}).error( function(){
-				console.log('Błąd komunikacji z API');
+				console.log('Błąd komunikacji z API-logowanie');
 		});
 	};
 
@@ -258,7 +247,7 @@ controllersSite.controller('register', ['$scope', '$http', function($scope, $htt
 				}
 
 			}).error( function(){
-				console.log('Błąd komunikacji z API');
+				console.log('Błąd komunikacji z API - register');
 		});
 
 	};

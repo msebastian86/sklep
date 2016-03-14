@@ -308,24 +308,41 @@ controllersAdmin.controller('userCreate', ['$scope', '$http', '$timeout', functi
 }]);
 
 
-controllersAdmin.controller('orders', ['$scope', '$http', function($scope, $http){
+controllersAdmin.controller('orders', ['$scope', '$http', 'checkToken' , function($scope, $http, checkToken){
 
-	$http.get('model/orders.json')
-		.success( function(data){
-			$scope.orders = data;
-		})
-		.error( function(){
-			console.log('Problem pobierania z JSONa :/');
+	$http.post( 'api/admin/orders/get/' , {
+
+		token: checkToken.raw(),
+		payload: checkToken.payload()
+
+	}).success( function( data ){
+
+		$scope.orders = data;
+
+		angular.forEach( $scope.orders , function( order , key ){
+			var parsed = JSON.parse( order.items );
+			$scope.orders[key].items = parsed;
+		});
+
+	}).error( function(){
+		console.log( 'Błąd połączenia z API' );
 	});
 	
 
-	$scope.delete = function ( user, $index ) {
+	$scope.delete = function ( order, $index ) {
 		if ( !confirm( 'Czy na pewno chcesz usunąć to zdjęcie' ) )
 			return false;
 
 		$scope.orders.splice( $index , 1 );
 
-		// TODO: przesłać dane przez API
+		$http.post( 'api/admin/orders/delete/' , {
+
+			token: checkToken.raw(),
+			id: order.id,
+
+		}).error( function(){
+			console.log( 'Błąd połączenia z API' );
+		});
 	};
 
 	$scope.changeStatus = function ( order ) {
@@ -334,6 +351,17 @@ controllersAdmin.controller('orders', ['$scope', '$http', function($scope, $http
 			order.status = 1;
 		else
 			order.status = 0;
+
+		$http.post( 'api/admin/orders/update/' , {
+
+			token: checkToken.raw(),
+			id: order.id,
+			payload: checkToken.payload(),
+			status :  order.status
+
+		}).error( function(){
+			console.log( 'Błąd połączenia z API' );
+		});
 		
 		//console.log(order.status);
 	};
