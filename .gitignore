@@ -3,3 +3,9 @@
 *.sublime-workspace
 test.php
 database.php
+
+#installed node modules
+node_modules
+
+#installed bower modules
+bower_components
