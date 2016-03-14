@@ -109,7 +109,7 @@ controllersSite.controller('siteOrders', ['$scope', '$http', function($scope, $h
 }]);
 
 
-controllersSite.controller('cartCtrl', ['$scope', '$http', '$filter', 'cartSrv', function($scope, $http, $filter, cartSrv){
+controllersSite.controller('cartCtrl', ['$scope', '$http', '$filter', 'cartSrv', 'checkToken', function($scope, $http, $filter, cartSrv, checkToken){
 
 	$scope.cart = cartSrv.show();
 
@@ -136,29 +136,43 @@ controllersSite.controller('cartCtrl', ['$scope', '$http', '$filter', 'cartSrv',
 
 	$scope.setOrder = function ( $event ){
 		console.log('zamowienie:');
-		//$event.preventDefault();
+		
+		$event.preventDefault();
 
 		//TODO: sprawdz czy user zalogowany
 
-		var loggedIn = true;
-
-		if ( !loggedIn )
+		if ( !checkToken.loggedIn() )
 		{
 			$scope.alert = { type : 'warning' , msg : 'Błąd, zaloguj się'};
-			$event.preventDefault();
 			return false;
 			// return zeby zatrzymac funkcje -nie zapisywanie smieci w bazie
 		}
 
-		//TODO: zapisz zamowienia w bazie
-		console.log( $scope.total() );
-		console.log( $scope.cart );
+		$http.post('api/site/orders/create/' , {
 
-		$scope.alert = { type : 'success' , msg : 'Trwa składanie zamówienia...' };
+			token: checkToken.raw(),
+			payload: checkToken.payload(),
+			items: $scope.cart,
+			total: $scope.total()
+
+		}).success( function(data){
+
+				cartSrv.empty();
+				$scope.alert = { type : 'success' , msg : 'Trwa składanie zamówienia...' };
+				$( '#paypalForm' ).submit();
+			})
+			.error( function(){
+				console.log('Blad laczenia z api :/');
+		});	
+
+
+		// console.log( $scope.total() );
+		// console.log( $scope.cart );
+		
 		//cartSrv.empty();
 
 		$event.preventDefault();
-		$( '#paypalForm' ).submit();
+		//$( '#paypalForm' ).submit();
 
 	}
 
@@ -170,20 +184,10 @@ controllersSite.controller('cartCtrl', ['$scope', '$http', '$filter', 'cartSrv',
 }]);
 
 
-controllersAdmin.controller('orders', ['$scope', '$http', function($scope, $http){
-
-	$http.get('model/orders.json')
-		.success( function(data){
-			$scope.orders = data;
-		})
-		.error( function(){
-			console.log('Problem pobrania z JSONa :/');
-	});
-
-}]);
 
 
-controllersAdmin.controller('login', ['$scope', '$http', 'store', 'checkToken','$location', function($scope, $http, store, checkToken, $location){
+
+controllersSite.controller('login', ['$scope', '$http', 'store', 'checkToken','$location', function($scope, $http, store, checkToken, $location){
 
 	if ( checkToken.loggedIn() )
 		$location.path('/products');
@@ -219,7 +223,7 @@ controllersAdmin.controller('login', ['$scope', '$http', 'store', 'checkToken','
 
 }]);
 
-controllersAdmin.controller('register', ['$scope', '$http', function($scope, $http){
+controllersSite.controller('register', ['$scope', '$http', function($scope, $http){
 		
 	$scope.user = {};
 

@@ -94,7 +94,7 @@ myServices.service('checkToken', [ 'store', 'jwtHelper', function( store, jwtHel
 	};
 
 	this.raw = function () {
-		return token;
+		return store.get('token');
 	};
 
 	this.del = function () {
