@@ -40,11 +40,13 @@
               <div style="position:relative; display:inline-block;" class="pull-left;">
                 <!-- type button jest po to zeby angular nie łapał pozostałych funkcji ng-.. -->
                 <button class="btn btn-danger btn-xs" type="button" ng-click="delImage( image, $index )" style="position:absolute; right: 10px; top: 5px;">&times;</button>
-                <img ng-src="uploads/{{ id }}/{{ image }}" alt="{{product.name}}" style="width:150px; margin-right:5px;" class="img-thumbnail pull-left margin-10">
+                <img ng-src="uploads/{{ id }}/{{ image }}" ng-click="setThumb( product, image )" alt="{{product.name}}" style="width:150px; margin-right:5px; cursor: pointer;" class="img-thumbnail pull-left margin-10">
               </div>
             </div>
 
         </div>
+
+
 
         <div class="clearfix"></div>
 

@@ -10,8 +10,16 @@ class Users extends CI_Controller {
 		$_POST = json_decode($post, true);
 
 		// ładujomy model (ścieżka)
-		$this->load->model('admin/Users_model');
+		$this->load->model('admin/Users_model');		
+
+		//var_dump($token->role);
+
+		$token = $this->input->post( 'token' );
+		$token = $this->jwt->decode( $token , config_item( 'encryption_key' ) );
 		
+		if ( $token->role != 'admin')
+			exit('Nie jestes adminem, idz w cholere');		
+
 	}
 
 	public function get( $id = false )

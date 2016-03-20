@@ -1,5 +1,7 @@
 ﻿<header>
 
+    <link ng-if="!name.default" rel="stylesheet" href="https://bootswatch.com/{{szablon}}/bootstrap.min.css">
+
     <nav class="navbar navbar-default">
       <div class="container">
         <div class="row">
@@ -42,5 +44,16 @@
     <div class="alert alert-warning" ng-if="noAdmin">
       Tylko dla Admina
     </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6">
+            <select class="form-control" ng-model="szablon">
+                <option ng-repeat="name in [ 'default', 'cyborg', 'cosmo', 'darkly' ]">{{name}}</option>
+            </select>
+        </div>
+      </div>
+    </div>
+    <p></p>
 
 </header>

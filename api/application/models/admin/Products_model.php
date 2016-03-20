@@ -47,4 +47,15 @@ class Products_model extends CI_Model {
 		$this->db->delete('products', $product);
 	}
 
+	public function setThumb( $productId, $product )
+	{
+
+		// updatuje produkt o przekazanym id....
+		$this->db->where('id', $productId);
+
+		// podajemy nazwe tabeli w której updatujemy...
+		$this->db->update('products', $product);
+	}
+
+
 }

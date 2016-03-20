@@ -1,10 +1,11 @@
 <div class="row">
     <div class="col-sm-12">
-        <div class="row">
-            <div class="col-sm-12">
-                <input type="text" placeholder="sercz" ng-model="search">
-                <p></p>
+
+        <div class="row" style="margin-bottom:30px;">
+            <div class="col-xs-6">
+                <input type="text" style="width:100%;" placeholder="sercz" ng-model="search">
             </div>
+            
         </div>
         
         <div class="panel panel-default" ng-repeat="product in products | filter : search">
@@ -12,7 +13,9 @@
             <div class="panel-body" ng-init="checkCart( product )">
 
                 <span class="label label-warning pull-right">{{ product.price | number:2 }} zł/kg</span>
-                <strong class="pull-left"><a href="#/product/{{product.id}}">{{ product.name | uppercase}}</a></strong>
+                <strong class="pull-left"><a href="#/product/{{product.id}}">{{ product.name | uppercase}}</a></strong><br/>
+
+                <img src="uploads/{{product.id}}/{{product.thumb}}" alt="" style="max-width: 200px; max-height: 100px;" class="img-thumbnail" ng-if="product.thumb">
                 <div class="clearfix"></div>
                         
                 <div class="row" style="margin-top: 15px;">

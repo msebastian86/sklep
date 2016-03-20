@@ -1,11 +1,13 @@
-'use strict';
+/* jshint node: true */
 
 var controllersAdmin = angular.module('controllersAdmin', [ 'angularFileUpload' , 'myDirectives' ]);
 
-controllersAdmin.controller('products', ['$scope', '$http', function($scope, $http){
+controllersAdmin.controller('products', ['$scope', '$http', 'checkToken', function($scope, $http, checkToken){
 
-		$http.get('api/admin/products/get')
-			.success( function(data){
+		$http.post('api/admin/products/get' , {
+			token: checkToken.raw()
+
+		}).success( function(data){
 				$scope.products = data;
 			})
 			.error( function(){
@@ -23,6 +25,8 @@ controllersAdmin.controller('products', ['$scope', '$http', function($scope, $ht
 
 
 			$http.post('api/admin/products/delete/' , {
+
+				token: checkToken.raw(),
 				product : product
 			}).error( function(){
 				console.log('Błąd komunikacji z API');
@@ -33,15 +37,16 @@ controllersAdmin.controller('products', ['$scope', '$http', function($scope, $ht
 
 }]);
 
-controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', 'FileUploader', '$timeout' , function($scope, $http, $routeParams, FileUploader, $timeout){
+controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', 'FileUploader', '$timeout', 'checkToken', function($scope, $http, $routeParams, FileUploader, $timeout, checkToken){
 
 		var productId = $routeParams.id;
 		$scope.id = productId;
 
+		$http.post('api/admin/products/get/' + productId, {
 
-		$http.get('api/admin/products/get/' + productId)
+			token: checkToken.raw()
 
-			.success( function(data){
+		}).success( function(data){
 				$scope.product = data;
 			})
 			.error( function(){
@@ -52,6 +57,7 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
 
 			$http.post('api/admin/products/update/' , {
 
+				token: checkToken.raw(),
 				product : product
 
 				}).success( function(){
@@ -73,8 +79,10 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
 
 		function getImages(){
 			
-			$http.get('api/admin/images/get/' + productId)
-				.success( function(data){
+			$http.post('api/admin/images/get/' + productId, {
+
+				token: checkToken.raw()
+			}).success( function(data){
 					$scope.images = data;
 				})
 				.error( function(){
@@ -104,10 +112,11 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
         };
 
         $scope.delImage = function ( imageName, $index ) {
-        	$scope.images.splice( $index , 1 )
+        	$scope.images.splice( $index , 1 );
 
         	$http.post('api/admin/images/delete/', {
 
+        		token: checkToken.raw(),
         		id : productId,
         		image : imageName
 
@@ -123,17 +132,33 @@ controllersAdmin.controller('productEdit', ['$scope', '$http', '$routeParams', '
         	console.log("usunięte");
         };
 
+        $scope.setThumb = function ( product, image ) {
+
+        	// przekazuje nazwe obrazka
+        	//console.log(image);	
+
+        	$http.post('api/admin/images/setThumb/', {
+
+        		token: checkToken.raw(),
+        		product: product,
+        		image : image
+	
+        		}).error( function(){
+        			console.log('Problem pobierania z JSONa :/');
+        	});
+        };
+
 		// console.log($scope.products[2].opis);
 
 }]);
 
 
-controllersAdmin.controller('productCreate', ['$scope', '$http', '$timeout',  function($scope, $http, $timeout){
+controllersAdmin.controller('productCreate', ['$scope', '$http', '$timeout','checkToken',  function($scope, $http, $timeout, checkToken){
 
 
 		$scope.createProduct = function ( product ) {
 			$http.post('api/admin/products/create/' , {
-
+				token: checkToken.raw(),
 				product : product
 
 				}).success( function(){
@@ -159,16 +184,19 @@ controllersAdmin.controller('productCreate', ['$scope', '$http', '$timeout',  fu
 }]);
 
 
-controllersAdmin.controller('users', ['$scope', '$http', function($scope, $http){
+controllersAdmin.controller('users', ['$scope', '$http', 'checkToken', function($scope, $http, checkToken){
 
 
+	$http.post('api/admin/users/get' , {
 
+		// checkToken to service
+		token: checkToken.raw()
+		}).success( function(data){
 
-	$http.get('api/admin/users/get')
-		.success( function(data){
 			$scope.users = data;
 		})
 		.error( function(){
+
 			console.log('Problem z połączeniem do sql :/');
 	});
 
@@ -185,6 +213,8 @@ controllersAdmin.controller('users', ['$scope', '$http', function($scope, $http)
 		// [który index, ile elementów, dodanie czegoś ]
 
 		$http.post('api/admin/users/delete/' , {
+
+			token: checkToken.raw(),
 			user : user
 		}).error( function(){
 			console.log('Błąd komunikacji z API');
@@ -197,14 +227,15 @@ controllersAdmin.controller('users', ['$scope', '$http', function($scope, $http)
 
 
 
-controllersAdmin.controller('userEdit', ['$scope', '$http', '$routeParams', '$timeout', function($scope, $http, $routeParams, $timeout){
+controllersAdmin.controller('userEdit', ['$scope', '$http', '$routeParams', '$timeout', 'checkToken', function($scope, $http, $routeParams, $timeout, checkToken){
 
 		var userId = $routeParams.id;
 		$scope.id = userId;
 
-		$http.get('api/admin/users/get/' + userId)
+		$http.post('api/admin/users/get/' + userId , {
 
-			.success( function(data){
+				token: checkToken.raw()
+			}).success( function(data){
 				$scope.user = data;
 				// console.log(data);
 			})
@@ -216,6 +247,7 @@ controllersAdmin.controller('userEdit', ['$scope', '$http', '$routeParams', '$ti
 
 			$http.post('api/admin/users/update/' , {
 
+				token: checkToken.raw(),
 				user : user,
 				id : userId,
 				name : user.name,
@@ -259,7 +291,7 @@ controllersAdmin.controller('userEdit', ['$scope', '$http', '$routeParams', '$ti
 }]);
 
 
-controllersAdmin.controller('userCreate', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
+controllersAdmin.controller('userCreate', ['$scope', '$http', '$timeout', 'checkToken', function($scope, $http, $timeout, checkToken){
 
 		///zeby defaultowo zaznaczony byl user
 		$scope.user = {};
@@ -270,6 +302,7 @@ controllersAdmin.controller('userCreate', ['$scope', '$http', '$timeout', functi
 			$http.post('api/admin/users/create/' , {
 
 				// co przekazujemy i pod jaka postacia
+				token: checkToken.raw(),
 				user : user,
 				name : user.name,
 				email : user.email,
@@ -347,7 +380,7 @@ controllersAdmin.controller('orders', ['$scope', '$http', 'checkToken' , functio
 
 	$scope.changeStatus = function ( order ) {
 
-		if (order.status == 0) 
+		if (order.status === 0)
 			order.status = 1;
 		else
 			order.status = 0;

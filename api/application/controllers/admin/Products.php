@@ -11,6 +11,13 @@ class Products extends CI_Controller {
 
 		// ładujomy model (ścieżka)
 		$this->load->model('admin/Products_model');
+
+		$token = $this->input->post( 'token' );
+		$token = $this->jwt->decode( $token , config_item( 'encryption_key' ) );
+		
+		if ( $token->role != 'admin')
+			exit('Nie jestes adminem, idz w cholere');		
+
 		
 	}
 
@@ -46,8 +53,33 @@ class Products extends CI_Controller {
 	{	
 
 		$product = $this->input->post('product');
-		$output = $this->Products_model->delete( $product );
-		
+
+		$this->deleteDir( $product['id'] );
+
+		$this->Products_model->delete( $product );
+	}
+
+	public function deleteDir($id)
+	{
+		// fcpath - folder wyzej
+
+		$dirPath = FCPATH . '../uploads/' . $id . '/';
+
+		// if (! is_dir($dirPath)) {
+	 //        throw new InvalidArgumentException("$dirPath must be a directory");
+	 //    }
+	    if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
+	        $dirPath .= '/';
+	    }
+	    $files = glob($dirPath . '*', GLOB_MARK);
+	    foreach ($files as $file) {
+	        if (is_dir($file)) {
+	            self::deleteDir($file);
+	        } else {
+	            unlink($file);
+	        }
+	    }
+	    rmdir($dirPath);
 	}
 
 }

@@ -1,4 +1,4 @@
-﻿'use strict';
+﻿/* jshint node: true */
 
 var controllersSite = angular.module('controllersSite', []);
 
@@ -38,7 +38,7 @@ controllersSite.controller('siteProducts', ['$scope', '$http', 'cartSrv', '$time
 					}
 				});
 			}
-		}
+		};
 
 	// console.log($scope.products[2].opis);
 
@@ -72,7 +72,7 @@ controllersSite.controller('siteProduct', ['$scope', '$http', '$routeParams', 'c
 					}
 				});
 			}
-		}
+		};
 
 		function getImages(){
 			

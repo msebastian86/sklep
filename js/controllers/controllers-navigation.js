@@ -1,8 +1,8 @@
-﻿'use strict';
+﻿/* jshint node: true */
 
 var controllersNavigation = angular.module('controllersNavigation' , []);
 
-controllersNavigation.controller('navigation', ['$scope', '$location', 'cartSrv', 'checkToken', function($scope, $location, cartSrv, checkToken){
+controllersNavigation.controller('navigation', ['$scope', '$location', 'cartSrv', 'checkToken', 'store', function($scope, $location, cartSrv, checkToken, store){
 
 		//console.log( $location.path() );
 
@@ -13,7 +13,6 @@ controllersNavigation.controller('navigation', ['$scope', '$location', 'cartSrv'
 			{	
 
 				if ( !checkToken.isAdmin() ){
-
 					window.location.href = '#/products?alert=noAdmin';
 				}
 
@@ -59,6 +58,11 @@ controllersNavigation.controller('navigation', ['$scope', '$location', 'cartSrv'
 			checkToken.del();
 			location.reload();
 		};
+
+		$scope.szablon = store.get('szablon');
+		$scope.$watch(function() {
+			store.set( 'szablon', $scope.szablon);
+		});
 
 		//console.log($scope.cart);
 		//store.set('test', 'zbychu nadpisał!');

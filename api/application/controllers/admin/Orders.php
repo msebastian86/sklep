@@ -12,7 +12,11 @@ class Orders extends CI_Controller {
 		$this->load->model( 'admin/Orders_model' );
 
 		$token = $this->input->post( 'token' );
-		$this->jwt->decode( $token , config_item( 'encryption_key' ) );	
+		$token = $this->jwt->decode( $token , config_item( 'encryption_key' ) );
+		
+		if ( $token->role != 'admin')
+			exit('Nie jestes adminem, idz w cholere');		
+
 
 	}
 
