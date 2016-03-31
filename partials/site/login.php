@@ -1,4 +1,4 @@
-<form action="" ng-submit="formSubmit( user )">
+<form ng-submit="formSubmit( user )">
 
 	<div class="row">
 		<div class="col-md-12">

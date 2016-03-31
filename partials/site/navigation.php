@@ -49,7 +49,7 @@
       <div class="row">
         <div class="col-xs-6">
             <select class="form-control" ng-model="szablon">
-                <option ng-repeat="name in [ 'default', 'cyborg', 'cosmo', 'darkly' ]">{{name}}</option>
+                <option ng-repeat="name in [ 'cosmo', 'darkly', 'flatly', 'lumen' ]">{{name}}</option>
             </select>
         </div>
       </div>
